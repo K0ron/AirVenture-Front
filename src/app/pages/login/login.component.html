@@ -1,0 +1,89 @@
+<main class="loginPage">
+  <div class="leftContainer">
+    <div class="brand">
+      <img src="../../../assets/logo.png" alt="Logo de l'appplication" class="brandLogo" />
+      <p class="brandName">AirVenture</p>
+    </div>
+
+    <img src="../../../assets/login_background.png" alt="Dessin de 2 personnes assises sur un scooter" class="pageBackground" />
+  </div>
+
+
+  <div class="rightContainer">
+    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+      <mat-tab label="LOGIN">
+        <form class="loginForm">
+          <mat-form-field appearance="outline" class="formField">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Placeholder" [formControl]="email" required>
+            @if (email.invalid) {
+              <mat-error>{{getErrorMessage()}}</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="formField">
+            <mat-label>Password</mat-label>
+            <input matInput placeholder="Placeholder" [formControl]="password" required>
+            @if (password.invalid) {
+            <mat-error>{{getErrorMessage()}}</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-checkbox color="primary" class="loginCheck">Remember me ?</mat-checkbox>
+
+          <div class="manageAccountContainer">
+            <a href="/" class="manageAccountLink">Forgot password?</a>
+            <a href="/" class="manageAccountLink">Create an account</a>
+          </div>
+
+
+          <button mat-raised-button class="formButton">LOGIN</button>
+        </form>
+      </mat-tab>
+
+
+      <mat-tab label="SIGN UP">
+        <form class="loginForm">
+          <span class="loginInvitation">Get started for free</span>
+
+          <div class="signupNameContainer">
+            <mat-form-field appearance="outline" class="nameField">
+              <mat-label>First Name</mat-label>
+              <input matInput placeholder="Placeholder">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="nameField">
+              <mat-label>Last Name</mat-label>
+              <input matInput placeholder="Placeholder">
+            </mat-form-field>
+          </div>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Placeholder" [formControl]="password" required>
+            @if (email.invalid) {
+            <mat-error>{{getErrorMessage()}}</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Select an account type</mat-label>
+            <mat-select>
+              <mat-option value="basic">Particular</mat-option>
+              <mat-option value="business">Business</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker">
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+          <button mat-raised-button class="formButton">SIGN UP</button>
+        </form>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</main>
