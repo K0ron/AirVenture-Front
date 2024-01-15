@@ -42,12 +42,23 @@
   display: flex;
   flex-direction: column;
   overflow-y: hidden; /* Hide vertical scrollbar */
+  overflow-x: hidden; /* Hide horizontal scrollbar */
   margin: 40px 20px 20px;
   min-height: 600px;
 }
 
 .formField {
+  margin-bottom: 7px;
+}
+
+.formInput {
+  width: 100%;
   margin: 5px 0;
+}
+
+.formErrors {
+  margin: -20px 0px 1px;
+  color: red;
 }
 
 .loginCheck {
@@ -87,5 +98,5 @@
 }
 
 .nameField {
-  width: 48%;
+  width: 95%;
 }

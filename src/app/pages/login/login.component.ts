@@ -8,7 +8,7 @@ import {MatNativeDateModule} from '@angular/material/core'
 import {MatButtonModule} from '@angular/material/button';
 import {MatTabsModule} from '@angular/material/tabs';
 import {NgIf} from "@angular/common";
-import {FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
+import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -20,18 +20,29 @@ import {FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
 export class LoginComponent {
   loginMode: boolean = true;
 
-  email = new FormControl('', [Validators.required, Validators.email]);
-  password = new FormControl('', [Validators.required])
+  constructor(private formBuilder: FormBuilder) {}
 
-  getErrorMessage() {
-    if (this.email.hasError('required')) {
-      return 'You must enter a value';
-    }
-    if (this.password.hasError('required')) {
-      return 'You must enter a value';
-    }
+  loginForm = this.formBuilder.group({
+    email: ['',  [Validators.required, Validators.email]],
+    password: ['', Validators.required]
+  });
 
-    return this.email.hasError('email') ? 'Not a valid email' : '';
+  onSubmitLogin() {
+    console.log('You are trying to login');
+  }
 
+  signupForm = this.formBuilder.group({
+    firstName: ['', Validators.required],
+    lastName: ['', Validators.required],
+    email: ['',  [Validators.required, Validators.email]],
+    password: ['', Validators.required],
+    accountType: ['', Validators.required],
+/*
+    date: ['', Validators.required]
+*/
+  });
+
+  onSubmitSignup() {
+    console.log('You are trying to signup');
   }
 }
