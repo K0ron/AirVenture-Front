@@ -6,11 +6,12 @@ import { UserService } from '../../services/user-service/user.service';
 import { CommonModule } from '@angular/common';
 import { UserExpService } from '../../services/user-exp-service/user-exp.service';
 import { UserCard } from '../../models/user-card';
+import { UserAvatarComponent } from '../../components/user-avatar/user-avatar.component';
 
 @Component({
   selector: 'app-user-profile-page',
   standalone: true,
-  imports: [UserExpListComponent, UserFormComponent,CommonModule],
+  imports: [UserExpListComponent, UserFormComponent,CommonModule, UserAvatarComponent],
   templateUrl: './user-profile-page.component.html',
   styleUrl: './user-profile-page.component.css'
 })
@@ -23,17 +24,17 @@ export class UserProfilePageComponent implements OnInit{
   public allExp:UserCard[]=[];
 
 
-  constructor(private serviceUser:UserService, private serviceUserExp: UserExpService){}
+  constructor(private serviceUser:UserService){}
 
-  getUserFromService(){this.serviceUser.getUser().subscribe(UserFromDB => {
+  getUserFromService(){this.serviceUser.getUser(this.serviceUser.usersEndPoint).subscribe(UserFromDB => {
     this.user = UserFromDB; 
-    console.log(this.user);})}
+    console.log("this.user");})}
   
   getUserFromExpService(){
-    this.serviceUserExp.getUserExp().subscribe(ExpsFromDB => {
+    this.serviceUser.getUser(this.serviceUser.expEndPoint).subscribe(ExpsFromDB => {
       this.userExpList = ExpsFromDB;
       this.allExp = this.userExpList;
-      this.userExpList = this.userExpList.slice(-3)
+      this.userExpList = this.userExpList.slice(-3);
     })
   }
  
@@ -41,18 +42,12 @@ export class UserProfilePageComponent implements OnInit{
   showMoreHandler() {
     this.showMore =! this.showMore;
     if (this.showMore==true) {
-      this.userExpList = this.userExpList.slice(-3)}
+      this.userExpList = this.userExpList.slice(-3);}
     else {
       this.buttonText = "show less activities";
       this.userExpList= this.allExp
     }
     
-  }
-
-  getThreeLastExp(){
-    if (this.showMore=true){
-      this.userExpList = this.userExpList.slice(-3)
-    }
   }
   
   ngOnInit(){ 

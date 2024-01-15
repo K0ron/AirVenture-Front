@@ -1,0 +1,5 @@
+<h1 mat-dialog-title>Select your avatar</h1>
+<div *ngFor="let avatar of avatars; let i = index">
+    <img [src]="avatar.url" (click)="onSelectAvatar(i)">
+</div>
+<button mat-button (click)="sendAndCloseAvatar()">Select</button>

@@ -1,0 +1,43 @@
+<form class="user-form-group" [formGroup]="editUserForm" (ngSubmit)="editUserForm.valid && onSubmit()"> 
+   
+    <div class="formInputContainer">
+        <mat-form-field hintLabel="Max 10 characters">
+          <mat-label>Enter some input</mat-label>
+          <input matInput #input maxlength="10" placeholder="First Name" formControlName="firstName">
+          <mat-hint align="end">{{input.value.length}}/10</mat-hint>
+        </mat-form-field>
+    </div>   
+    <div class="formInputContainer">
+        <mat-form-field hintLabel="Max 10 characters">
+          <mat-label>Enter some input</mat-label>
+          <input matInput #input maxlength="10" placeholder="Last Name" formControlName="lastName">
+          <mat-hint align="end">{{input.value.length}}/10</mat-hint>
+        </mat-form-field>
+    </div>
+        
+        <div class="formInputContainer">
+            <mat-form-field>
+              <mat-label>Enter your email</mat-label>
+              <input matInput placeholder="pat@example.com" formControlName="email" required>
+              <!-- @if (editUserForm.get('email')?.hasError('isRequired')) {
+                <mat-error>{{getErrorMessage()}}</mat-error>
+              } -->
+            </mat-form-field>
+        </div>
+            <div class="example-container">
+                <mat-form-field>
+                  <mat-label>Enter your password</mat-label>
+                  <input matInput [type]="hide ? 'password' : 'text'">
+                  <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </button>
+                </mat-form-field>
+          </div>
+
+
+
+<p>Complete the form to enable button.</p>
+<button type="submit">Submit</button>
+<!--  <button type="submit"[disabled]="!editUserForm.valid">Submit</button> -->
+</form>
+
