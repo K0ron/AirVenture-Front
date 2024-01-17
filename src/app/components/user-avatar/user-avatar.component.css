@@ -1,13 +1,15 @@
+
 .avatar-image{
-    width: 15em;
-    margin-left: 5em;
+    height: 10em;
+    width: 8em;
+    margin-left: 3em;
     margin-top: 2em;
 }
 
-.block-profile {
-    background-color: red;
+
+p {
+    font-size: small;
+    width: 100%;
 }
 
-.block-avatar {
-    background-color: blue;
-}
+

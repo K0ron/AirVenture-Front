@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { User } from '../../models/user-model';
 import { HttpClientModule } from '@angular/common/http';
@@ -7,6 +7,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+import { ChangePasswordDialogComponent } from '../change-password-dialog/change-password-dialog.component';
 
 
 
@@ -26,10 +29,11 @@ export class UserFormComponent implements OnChanges{
     firstName: ["", [Validators.required]],
     lastName: ["", [Validators.required]],
     email: ["", [Validators.required]],
-    password: ["", [Validators.required]]
+    password: ["", []]}, 
+    { 
     });
 
-  constructor(private fb: FormBuilder) { 
+  constructor(private fb: FormBuilder, public confirmationDialog: MatDialog, public changePasswordDialog: MatDialog ) { 
     this.userFromPage={firstName:"", lastName:"", email:"",password:"", telephone:0};
   
   }
@@ -59,15 +63,19 @@ export class UserFormComponent implements OnChanges{
 
     return this.email.hasError('email') ? 'Not a valid email' : '';
   } */
+  
+  openConfirmationDialog(): void {
+    this.confirmationDialog.open(ConfirmationDialogComponent);
+  }
+
+  openChangePasswordDialog(): void {
+    this.changePasswordDialog.open(ChangePasswordDialogComponent);
+  }
 
 
   onSubmit(){
     console.log(this.editUserForm.value)
+    if(this.editUserForm.dirty)
+    this.openConfirmationDialog();
   }
-
- 
-
-  
-
- 
 }
