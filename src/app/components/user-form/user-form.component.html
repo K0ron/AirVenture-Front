@@ -1,44 +1,40 @@
+
 <div class="user-full-form">
-<h4>YOUR ACCOUNT</h4>
+  <h4><span class="account-form-title">YOUR ACCOUNT</span></h4>
 
-<p>click on the field for update</p>
+  <p>click on the field for update</p>
 
 
-<form class="user-form-group" [formGroup]="editUserForm" (ngSubmit)="editUserForm.valid && onSubmit()"> 
+  <form class="user-form-group" [formGroup]="editUserForm" (ngSubmit)="editUserForm.valid && onSubmit()"> 
    
     <div class="formInputContainer">
-        <mat-form-field hintLabel="Max 20 characters" style="width:20em">
-          <mat-label>Enter some input</mat-label>
-          <input matInput #input placeholder="First Name" maxlength="20" formControlName="firstName">
-          <mat-hint align="end">{{input.value.length}}/20</mat-hint>
-        </mat-form-field>
+      <mat-form-field hintLabel="Max 20 characters" style="width:20em">
+      <mat-label>Enter some input</mat-label>
+      <input matInput #input placeholder="First Name" maxlength="20" formControlName="firstName">
+      <mat-hint align="end">{{input.value.length}}/20</mat-hint>
+      </mat-form-field>
     </div>   
+    
     <div class="formInputContainer">
-        <mat-form-field hintLabel="Max 20 characters" style="width:20em">
-          <mat-label>Enter some input</mat-label>
-          <input matInput #input placeholder="Last Name" maxlength="20" formControlName="lastName">
-          <mat-hint align="end">{{input.value.length}}/20</mat-hint>
-        </mat-form-field>
+      <mat-form-field hintLabel="Max 20 characters" style="width:20em">
+      <mat-label>Enter some input</mat-label>
+      <input matInput #input placeholder="Last Name" maxlength="20" formControlName="lastName">
+      <mat-hint align="end">{{input.value.length}}/20</mat-hint>
+      </mat-form-field>
     </div>
         
-        <div class="formInputContainer">
-            <mat-form-field style="width:20em">
-              <mat-label>Enter your email</mat-label>
-              <input matInput placeholder="pat@example.com" formControlName="email" required>
-              <!-- @if (editUserForm.get('email')?.hasError('isRequired')) {
-                <mat-error>{{getErrorMessage()}}</mat-error>
-              } -->
-            </mat-form-field>
-        </div>
+    <div class="formInputContainer">
+      <mat-form-field style="width:20em">
+      <mat-label>Enter your email</mat-label>
+      <input matInput placeholder="pat@example.com" formControlName="email" required>
+      </mat-form-field>
+    </div>
 
-<button button mat-raised-button="submit">Save changes</button>
+    <button button mat-raised-button="submit" style="background-color:var(--primary-bg-color); color:white">Save changes</button>
+    <button button mat-raised-button type="button" style="background-color:var(--primary-bg-color); color:white" (click)="openChangePasswordDialog()">Change Password</button>
 
-<button button mat-raised-button type="button" (click)="openChangePasswordDialog()">Change Password</button>
-
-</form>
+  </form>
 
 is dirty ? {{editUserForm.dirty}}
 is valid ? {{editUserForm.valid}}
-
-
 </div>

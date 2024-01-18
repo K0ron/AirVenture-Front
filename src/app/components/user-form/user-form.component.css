@@ -5,6 +5,11 @@
     align-items: center;
 }
 
+.account-form-title {
+    color: var(--primary-bg-color);
+    text-decoration: underline;
+    text-underline-offset: 1em;
+}
 
 .user-form-group{
     margin: auto;
@@ -14,3 +19,8 @@
     align-items: center;
     gap: 1em;
 }
+
+.mat-button {
+    background-color: var(--primary-bg-color);
+}
+

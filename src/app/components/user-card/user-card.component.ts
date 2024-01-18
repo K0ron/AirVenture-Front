@@ -7,6 +7,7 @@ import { Component, Input } from '@angular/core';
   templateUrl: './user-card.component.html',
   styleUrl: './user-card.component.css'
 })
+
 export class UserCardComponent {
 
 

@@ -10,16 +10,19 @@ import {MatInputModule} from '@angular/material/input';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 import { ChangePasswordDialogComponent } from '../change-password-dialog/change-password-dialog.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+
 
 
 
 @Component({
   selector: 'app-user-form',
   standalone: true,
-  imports: [ReactiveFormsModule, HttpClientModule,CommonModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule],
+  imports: [ReactiveFormsModule, HttpClientModule,CommonModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatToolbarModule],
   templateUrl: './user-form.component.html',
   styleUrl: './user-form.component.css',
 })
+
 export class UserFormComponent implements OnChanges{
   @Input() userFromPage: User;
   hide = true;
@@ -45,24 +48,17 @@ export class UserFormComponent implements OnChanges{
       this.userFromPage=changes['userFromPage'].currentValue[0] //ici on attribue la nouvelle valeur, qui vient dans un array.
       console.log(this.userFromPage)
       this.setFormValues();
-      }
-    } 
+    }
+  } 
 
   setFormValues(){
     this.editUserForm.patchValue({
       firstName: this.userFromPage.firstName,
       lastName: this.userFromPage.lastName,
       email: this.userFromPage.email,
-      })
+    })
       console.log(this.editUserForm.value)
   }
-/*   getErrorMessage() {
-    if (this.email.hasError('required')) {
-      return 'You must enter a value';
-    }
-
-    return this.email.hasError('email') ? 'Not a valid email' : '';
-  } */
   
   openConfirmationDialog(): void {
     this.confirmationDialog.open(ConfirmationDialogComponent);
@@ -71,7 +67,6 @@ export class UserFormComponent implements OnChanges{
   openChangePasswordDialog(): void {
     this.changePasswordDialog.open(ChangePasswordDialogComponent);
   }
-
 
   onSubmit(){
     console.log(this.editUserForm.value)

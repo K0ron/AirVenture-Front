@@ -1,2 +1,9 @@
-<h2>List of activities</h2> 
-<ul *ngFor="let exp of userExpListFromPage"> <li><b>Activity</b>: {{exp.activity}} <b>description:</b> {{exp.description}} </li></ul> 
+<div class="activites-block">
+    <h2 class="activities-title">Your recent activities</h2> 
+    <ul *ngFor="let exp of userExpListFromPage"> 
+        <div>
+            <li><b>Activity</b>: {{exp.activity}} 
+            <b>description:</b> {{exp.description}} </li> 
+        </div>
+    </ul>
+</div>

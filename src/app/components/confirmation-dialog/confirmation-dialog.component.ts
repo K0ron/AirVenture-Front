@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+
 @Component({
   selector: 'app-confirmation-dialog',
   standalone: true,
@@ -14,11 +15,10 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './confirmation-dialog.component.html',
   styleUrl: './confirmation-dialog.component.css'
 })
-export class ConfirmationDialogComponent {
 
+export class ConfirmationDialogComponent {
 
   changesCompleted(){
    console.log("changes completed successfully")
   }
-
 }

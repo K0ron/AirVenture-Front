@@ -9,9 +9,10 @@ import { MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle } fr
     MatDialogClose,
     MatDialogContent,
     MatDialogTitle],
-  templateUrl: './delete-account.component.html',
-  styleUrl: './delete-account.component.css'
+  templateUrl: './delete-account-dialog.component.html',
+  styleUrl: './delete-account-dialog.component.css'
 })
+
 export class DeleteAccountComponent {
 
 }
