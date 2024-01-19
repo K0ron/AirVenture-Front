@@ -1,0 +1,126 @@
+.loginPage {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 10%;
+}
+
+.leftContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+}
+
+.brandName {
+  font-family: 'Pacifico', Arial, sans-serif;
+  font-size: 64px;
+}
+
+.rightContainer {
+  width: 30%;
+  min-width: 453px;
+  margin-top: 9%;
+}
+
+.modeSelection {
+  display: flex;
+}
+.modeSelectionButton {
+  padding: 10px;
+  font-weight: 500;
+}
+
+.modeSelectionButton--active {
+  color: var(--primary-elements-color);
+  border-bottom: 2px solid var(--primary-elements-color);
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  overflow-y: hidden; /* Hide vertical scrollbar */
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+  margin: 40px 20px 20px;
+  min-height: 600px;
+}
+
+.formField {
+  margin-bottom: 7px;
+}
+
+.formInput {
+  width: 100%;
+  margin: 5px 0;
+}
+
+.formErrors {
+  margin: -20px 0px 1px;
+  color: red;
+}
+
+.loginCheck {
+  padding: 0!important;
+  color: var(--primary-elements-color);
+}
+
+.manageAccountContainer {
+  margin-top: 10px;
+}
+
+.manageAccountLink {
+  font-size: 14px;
+  color: var(--primary-elements-color);
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.formButton {
+  width: 50%;
+  align-self: center;
+  background-color: var(--primary-bg-color)!important;
+  color: white!important;
+  margin-top: 40px;
+  padding: 22px 0;
+  font-weight: 500;
+}
+
+.loginInvitation {
+  opacity: 60%;
+  margin: 0px 0 10px 0;
+}
+
+.signupNameContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nameField {
+  width: 95%;
+}
+
+@media (max-width: 768px) {
+  .loginPage {
+    flex-direction: column;
+  }
+  .pageBackground {
+    display: none;
+  }
+  .rightContainer {
+    width: auto;
+    margin-top: 0px;
+  }
+}
+
+@media (max-width: 510px) {
+  .loginPage {
+    margin: 0 5%;
+  }
+  .brand {
+    width: 90%;
+    flex-direction: row;
+  }
+}
