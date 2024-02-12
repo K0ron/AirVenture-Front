@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import {LoginComponent} from "./pages/login/login.component";
+import { LoginComponent } from './pages/login/login.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, LoginComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
+  imports: [RouterOutlet, LoginComponent, HeaderComponent, CommonModule],
 })
 export class AppComponent {
   title = 'AirVentureFront';

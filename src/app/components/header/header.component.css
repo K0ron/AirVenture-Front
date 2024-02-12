@@ -1,0 +1,21 @@
+.spacer {
+    flex: 1 1 auto;
+  }
+.mat-toolbar.mat-primary {
+    --mat-toolbar-container-background-color: #82B8B1;
+    --mat-toolbar-container-text-color: white;
+}
+.logo-img {
+  height: 50px; 
+  margin-right: 10px; 
+  align-items: center;
+}
+.mat-toolbar {
+  text-align: center;
+}
+.logo2 {
+  height: 40px; 
+  margin-right: 10px; 
+  align-items: center;
+
+}
