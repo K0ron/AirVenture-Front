@@ -31,14 +31,18 @@ export class LoginComponent {
   });
 
   onSubmitLogin() {
-    this.loginService.login(this.loginForm.value as UserLoginData).subscribe(
-      response => {
-      console.log(response);
-    },
-    error => {
-      console.error('Error in login request', error);
-      // Handle errors
-    });
+    if(this.loginForm.valid) {
+      this.loginService.login(this.loginForm.value as UserLoginData).subscribe(
+        response => {
+          console.log(response);
+        },
+        error => {
+          console.error('Error in login request', error);
+          // Handle errors
+        });
+    } else {
+      return;
+    }
   }
 
   signupForm = this.formBuilder.group({
@@ -50,13 +54,17 @@ export class LoginComponent {
   });
 
   onSubmitSignup() {
-    this.loginService.register(this.signupForm.value as UserSignupData).subscribe(
-    response => {
-      console.log(response);
-    },
-    error => {
-      console.error('Error in signup request', error);
-      // Handle errors
-    });
+    if(this.signupForm.valid) {
+      this.loginService.register(this.signupForm.value as UserSignupData).subscribe(
+        response => {
+          console.log(response);
+        },
+        error => {
+          console.error('Error in signup request', error);
+          // Handle errors
+        });
+    } else {
+      return;
+    }
   }
 }

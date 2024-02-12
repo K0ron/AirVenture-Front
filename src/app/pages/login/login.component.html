@@ -16,7 +16,7 @@
           <div class="formField">
             <mat-form-field appearance="outline" class="formInput">
               <mat-label>Email</mat-label>
-              <input matInput placeholder="Placeholder" formControlName="email">
+              <input matInput placeholder="Your email" formControlName="email">
             </mat-form-field>
             <div *ngIf="login.submitted && loginForm.controls.email.errors" class="formErrors">
               <span *ngIf="loginForm.controls.email.errors?.['required']">Please enter your email</span>
@@ -27,7 +27,7 @@
           <div class="formField">
             <mat-form-field appearance="outline" class="formInput">
               <mat-label>Password</mat-label>
-              <input matInput placeholder="Placeholder" formControlName="password">
+              <input matInput placeholder="Your password" type="password" formControlName="password">
             </mat-form-field>
             <div *ngIf="login.submitted && loginForm.controls.password.errors" class="formErrors">
               <span *ngIf="loginForm.controls.password.errors?.['required']">Please enter your password</span>
@@ -41,7 +41,7 @@
             <a href="/" class="manageAccountLink">Create an account</a>
           </div>
 
-          <button type="submit" [disabled]="!loginForm.valid" mat-raised-button class="formButton">LOGIN</button>
+          <button type="submit" mat-raised-button class="formButton">LOGIN</button>
         </form>
       </mat-tab>
 
@@ -54,7 +54,7 @@
             <div class="formField">
               <mat-form-field appearance="outline" class="formInput nameField">
                 <mat-label>First Name</mat-label>
-                <input matInput placeholder="Placeholder" formControlName="firstName">
+                <input matInput placeholder="Your first name" formControlName="firstName">
               </mat-form-field>
               <div *ngIf="signup.submitted && signupForm.controls.firstName.errors" class="formErrors">
                 <span *ngIf="signupForm.controls.firstName.errors?.['required']">Please enter your first name</span>
@@ -64,7 +64,7 @@
             <div class="formField">
               <mat-form-field appearance="outline" class="formInput nameField">
                 <mat-label>Last Name</mat-label>
-                <input matInput placeholder="Placeholder" formControlName="lastName">
+                <input matInput placeholder="Your last name" formControlName="lastName">
               </mat-form-field>
               <div *ngIf="signup.submitted && signupForm.controls.lastName.errors" class="formErrors">
                 <span *ngIf="signupForm.controls.lastName.errors?.['required']">Please enter your last name</span>
@@ -75,7 +75,7 @@
           <div class="formField">
             <mat-form-field appearance="outline" class="formInput">
               <mat-label>Email</mat-label>
-              <input matInput placeholder="Placeholder" formControlName="email">
+              <input matInput placeholder="Your email" formControlName="email">
             </mat-form-field>
             <div *ngIf="signup.submitted && signupForm.controls.email.errors" class="formErrors">
               <span *ngIf="signupForm.controls.email.errors?.['required']">Please enter your email</span>
@@ -86,7 +86,7 @@
           <div class="formField">
             <mat-form-field appearance="outline" class="formInput">
               <mat-label>Password</mat-label>
-              <input matInput placeholder="Placeholder" formControlName="password">
+              <input matInput placeholder="Your password" type="password" formControlName="password">
             </mat-form-field>
             <div *ngIf="signup.submitted && signupForm.controls.password.errors" class="formErrors">
               <span *ngIf="signupForm.controls.password.errors?.['required']">Please enter your password</span>
@@ -106,16 +106,7 @@
             </div>
           </div>
 
-          <!--<div class="formField">
-            <mat-form-field class="formInput">
-              <mat-label>Choose a date</mat-label>
-              <input matInput [matDatepicker]="picker">
-              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
-          </div>-->
-
-          <button type="submit" [disabled]="!signupForm.valid"  mat-raised-button class="formButton">SIGN UP</button>
+          <button type="submit" mat-raised-button class="formButton">SIGN UP</button>
         </form>
       </mat-tab>
     </mat-tab-group>
