@@ -1,4 +1,12 @@
-<app-user-avatar></app-user-avatar><app-user-form [userFromPage]="user"></app-user-form>
+<div class="avatar-form-container">
+<div class="avatar-component-container"><app-user-avatar></app-user-avatar></div>
+<div class="form-component-container"><app-user-form [userFromPage]="user"></app-user-form></div>
+<div class="delete-account-container">
+    <app-delete-account-block></app-delete-account-block>
+</div>
+</div>
+<div class="expericences-container">
 <app-user-exp-list [userExpListFromPage]="userExpList"> 
 </app-user-exp-list>
-<button (click)="showMoreHandler()">{{buttonText}}</button>
+<button mat-raised-button class="show-more-activities-button" (click)="showMoreHandler()">{{buttonText}}</button>
+</div>

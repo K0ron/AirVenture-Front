@@ -9,14 +9,11 @@ import { Observable } from 'rxjs';
 export class UserService {
 
   public usersEndPoint = "assets/users.mock.ts"
-  public expEndPoint = "assets/activities.mock.ts";
-  public imageEndPoint = "assets/avatarImages.mock.ts";
-
 
   constructor(private userinforeq: HttpClient) { } // providehttpclient() to be installed in app.config.ts
 
-  getUser(endPoint:string): Observable<any> {
-    return this.userinforeq.get<any>(endPoint);
+  getUser(): Observable<any> {
+    return this.userinforeq.get<any>(this.usersEndPoint);
     }
   
     
