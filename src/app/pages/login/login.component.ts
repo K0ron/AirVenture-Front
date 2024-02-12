@@ -9,6 +9,9 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatTabsModule} from '@angular/material/tabs';
 import {NgIf} from "@angular/common";
 import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
+import {LoginService} from "../../services/login/login.service";
+import {UserLoginData} from "../../models/UserLoginData";
+import {UserSignupData} from "../../models/userSignupData";
 
 @Component({
   selector: 'app-login',
@@ -20,7 +23,7 @@ import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 export class LoginComponent {
   loginMode: boolean = true;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private loginService: LoginService) {}
 
   loginForm = this.formBuilder.group({
     email: ['',  [Validators.required, Validators.email]],
@@ -28,7 +31,14 @@ export class LoginComponent {
   });
 
   onSubmitLogin() {
-    console.log('You are trying to login');
+    this.loginService.login(this.loginForm.value as UserLoginData).subscribe(
+      response => {
+      console.log(response);
+    },
+    error => {
+      console.error('Error in login request', error);
+      // Handle errors
+    });
   }
 
   signupForm = this.formBuilder.group({
@@ -36,13 +46,17 @@ export class LoginComponent {
     lastName: ['', Validators.required],
     email: ['',  [Validators.required, Validators.email]],
     password: ['', Validators.required],
-    accountType: ['', Validators.required],
-/*
-    date: ['', Validators.required]
-*/
+    roles: [1, Validators.required]
   });
 
   onSubmitSignup() {
-    console.log('You are trying to signup');
+    this.loginService.register(this.signupForm.value as UserSignupData).subscribe(
+    response => {
+      console.log(response);
+    },
+    error => {
+      console.error('Error in signup request', error);
+      // Handle errors
+    });
   }
 }

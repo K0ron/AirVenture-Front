@@ -41,7 +41,7 @@
             <a href="/" class="manageAccountLink">Create an account</a>
           </div>
 
-          <button mat-raised-button class="formButton">LOGIN</button>
+          <button type="submit" [disabled]="!loginForm.valid" mat-raised-button class="formButton">LOGIN</button>
         </form>
       </mat-tab>
 
@@ -96,13 +96,13 @@
           <div class="formField">
             <mat-form-field class="formInput">
               <mat-label>Select an account type</mat-label>
-              <mat-select formControlName="accountType">
-                <mat-option value="basic">Particular</mat-option>
-                <mat-option value="business">Business</mat-option>
+              <mat-select formControlName="roles">
+                <mat-option value=1>Particular</mat-option>
+                <mat-option value=2>Business</mat-option>
               </mat-select>
             </mat-form-field>
-            <div *ngIf="signup.submitted && signupForm.controls.accountType.errors" class="formErrors">
-              <span *ngIf="signupForm.controls.accountType.errors?.['required']">Please enter your account type</span>
+            <div *ngIf="signup.submitted && signupForm.controls.roles.errors" class="formErrors">
+              <span *ngIf="signupForm.controls.roles.errors?.['required']">Please enter your account type</span>
             </div>
           </div>
 
@@ -115,7 +115,7 @@
             </mat-form-field>
           </div>-->
 
-          <button mat-raised-button class="formButton">SIGN UP</button>
+          <button type="submit" [disabled]="!signupForm.valid"  mat-raised-button class="formButton">SIGN UP</button>
         </form>
       </mat-tab>
     </mat-tab-group>
