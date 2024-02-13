@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { UserExpListComponent } from '../../components/user-exp-list/user-exp-list.component';
 import { UserFormComponent } from '../../components/user-form/user-form.component';
-import { User } from '../../models/user-model';
-import { UserService } from '../../services/user-service/user.service';
+import { User } from '../../shared/models/user-model';
 import { CommonModule } from '@angular/common';
-import { UserExpService } from '../../services/user-exp-service/user-exp.service';
-import { UserCard } from '../../models/user-card';
+import { UserCard } from '../../shared/models/user-card';
 import { UserAvatarComponent } from '../../components/user-avatar/user-avatar.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle } from '@angular/material/dialog';
 import { DeleteAccountBlockComponent } from '../../components/delete-account-block/delete-account-block.component';
+import { UserService } from '../../shared/services/user-service/user.service';
+import { UserExpService } from '../../shared/services/user-exp-service/user-exp.service';
 
 @Component({
     selector: 'app-user-profile-page',
