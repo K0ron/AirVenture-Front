@@ -12,18 +12,19 @@ import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 import {AuthenticationService} from "../domain/services/authentication.service";
 import {Router} from "@angular/router";
 import {LoginRequestDto} from "../domain/dto/login-request.dto";
-import {User} from "../domain/models/User";
 import {SignupRequestDto} from "../domain/dto/signup-request.dto";
+import {MatDialog} from "@angular/material/dialog";
+import {RegisterErrorModalComponent} from "./register-error-modal/register-error-modal.component";
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [MatFormFieldModule, MatCheckboxModule, MatInputModule, MatSelectModule, MatDatepickerModule, MatNativeDateModule, MatButtonModule, MatTabsModule, NgIf, ReactiveFormsModule],
+    imports: [MatFormFieldModule, MatCheckboxModule, MatInputModule, MatSelectModule, MatDatepickerModule, MatNativeDateModule, MatButtonModule, MatTabsModule, NgIf, ReactiveFormsModule],
   templateUrl: './authentication.component.html',
   styleUrl: './authentication.component.css'
 })
 export class AuthenticationComponent {
-    constructor(private formBuilder: FormBuilder, private authenticationService: AuthenticationService, private router: Router) {
+    constructor(private formBuilder: FormBuilder, private authenticationService: AuthenticationService, private router: Router, public dialog: MatDialog) {
     }
 
     loginForm = this.formBuilder.group({
@@ -56,6 +57,8 @@ export class AuthenticationComponent {
             this.authenticationService.register(signupDto).subscribe((response) => {
                 if(response) {
                   window.location.reload();
+                } else {
+                    this.dialog.open(RegisterErrorModalComponent);
                 }
             })
         }

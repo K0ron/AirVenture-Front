@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {map, Observable, pipe} from "rxjs";
+import {catchError, map, Observable, pipe} from "rxjs";
 import {User} from "../models/User";
 
 @Injectable({
@@ -38,6 +38,10 @@ export class AuthenticationService {
     }).pipe(
       map(response => {
         return response.status === 201;
-      }))
+      }),
+      catchError(async () => {
+        return false;
+      })
+    )
   }
 }
