@@ -5,6 +5,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { SearchBarComponent } from '../search-bar/search-bar.component';
+import { FilterComponent } from '../filter/filter.component';
 
 @Component({
   selector: 'app-card',
@@ -15,6 +17,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatCardModule,
     MatGridListModule,
     CommonModule,
+    SearchBarComponent,
+    FilterComponent,
   ],
   templateUrl: './card.component.html',
   styleUrl: './card.component.css',
