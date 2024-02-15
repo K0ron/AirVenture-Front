@@ -1,10 +1,11 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { MatRadioModule } from '@angular/material/radio';
 
 @Component({
   selector: 'app-filter',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, MatRadioModule],
   templateUrl: './filter.component.html',
   styleUrl: './filter.component.css',
 })

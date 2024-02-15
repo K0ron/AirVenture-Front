@@ -21,7 +21,7 @@
                     </div>
 
                 </mat-card-header>
-                <img [src]="destination?.image" width="200" height="200">
+                <img [src]="destination?.image" width="200" height="200" class="photo-activity">
                 <mat-card-title>{{destination.name}}</mat-card-title>
                 <mat-card-subtitle>{{destination.location}}</mat-card-subtitle>
                 <p><b>{{destination.country}}</b></p>
@@ -33,7 +33,7 @@
             </div>
         </div>
     </ng-container>
-    <ng-template #noResults>
+    <ng-template #noResultsTemplate>
         <img src="../../../assets/notf.png" alt="Logo" class="not">
     </ng-template>
 </mat-card>

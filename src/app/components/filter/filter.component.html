@@ -1,15 +1,23 @@
 <div class="filter-container">
-    <span>Filter:</span>
 
-    <input type="radio" name="filter" value="all" [(ngModel)]="selectedRadioButtonValue"
-        (change)="onRadioButtonSelectionChanged()" />
-    <span>{{ 'Tout('+all+')' }}</span>
+    <label class="radio-container">
+        <input type="radio" name="filter" value="all" [(ngModel)]="selectedRadioButtonValue"
+            (change)="onRadioButtonSelectionChanged()" />
+        <span class="checkmark"></span>
+        <span>{{ 'Tout('+all+')' }}</span>
+    </label>
 
-    <input type="radio" name="filter" value="france" [(ngModel)]="selectedRadioButtonValue"
-        (change)="onRadioButtonSelectionChanged()" />
-    <span>{{ 'France('+france+')' }}</span>
+    <label class="radio-container">
+        <input type="radio" name="filter" value="france" [(ngModel)]="selectedRadioButtonValue"
+            (change)="onRadioButtonSelectionChanged()" />
+        <span class="checkmark"></span>
+        <span>{{ 'France('+france+')' }}</span>
+    </label>
 
-    <input type="radio" name="filter" value="outFrance" [(ngModel)]="selectedRadioButtonValue"
-        (change)="onRadioButtonSelectionChanged()" />
-    <span>{{ 'Hors de France('+outFrance+')' }}</span>
+    <label class="radio-container">
+        <input type="radio" name="filter" value="outFrance" [(ngModel)]="selectedRadioButtonValue"
+            (change)="onRadioButtonSelectionChanged()" />
+        <span class="checkmark"></span>
+        <span>{{ 'Hors de France('+outFrance+')' }}</span>
+    </label>
 </div>
