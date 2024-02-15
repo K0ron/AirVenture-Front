@@ -1,0 +1,25 @@
+.search-container {
+  margin: 10px 0px;
+  display: block;
+  justify-content: center;
+  align-items: center;
+}
+
+input[type="text"] {
+  width: 240px;
+  height: 20px;
+  padding: 15px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  margin-left: 10px;
+  border-radius: 1rem;
+}
+
+.center-title {
+  text-align: center;
+  color: #555;
+  font-size: 23px;
+  font-weight: normal;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
