@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Destination } from '../../domain/models/destination';
+import { Destination } from '../../../domain/models/destination';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { FilterComponent } from '../filter/filter.component';
-import { DESTINATIONS } from '../../domain/services/mock-destinations';
+import { DESTINATIONS } from '../../../domain/services/mock-destinations';
 
 @Component({
   selector: 'app-card',

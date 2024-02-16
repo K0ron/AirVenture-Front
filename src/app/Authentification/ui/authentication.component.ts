@@ -14,7 +14,7 @@ import {Router} from "@angular/router";
 import {LoginRequestDto} from "../domain/dto/login-request.dto";
 import {SignupRequestDto} from "../domain/dto/signup-request.dto";
 import {MatDialog} from "@angular/material/dialog";
-import {RegisterErrorModalComponent} from "./register-error-modal/register-error-modal.component";
+import {RegisterErrorModalComponent} from "./components/register-error-modal/register-error-modal.component";
 
 @Component({
   selector: 'app-login',
