@@ -1,0 +1,26 @@
+.avatar-form-container {
+    display: flex;
+    justify-content:space-around;
+    flex-direction: row;   
+}
+
+.delete-account-container {
+    display: flex;
+    flex-direction: column;
+    width: 10%;
+    height: 8em; 
+}
+
+
+.avatar-component-div{
+    width: 30%;
+}
+
+.form-component-div {
+    width: 40%;
+}
+
+.delete-account-container {
+    width: 20%;
+}
+
