@@ -37,8 +37,7 @@ export class UserFormComponent implements OnChanges{
     });
 
   constructor(private fb: FormBuilder, public confirmationDialog: MatDialog, public changePasswordDialog: MatDialog ) {
-    this.userFromPage={firstName:"", lastName:"", email:"",password:"", telephone:0};
-
+    this.userFromPage={firstName:"", lastName:"", email:"",password:""};
   }
 
 
