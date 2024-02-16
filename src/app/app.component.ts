@@ -7,7 +7,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {HomeComponent} from "./Home/ui/home.component";
 import {ReservationComponent} from "./Reservation/ui/reservation.component";
 import {UserProfilePageComponent} from "./Profile/ui/user-profile-page.component";
-import {UserFormComponent} from "./Profile/components/user-form/user-form.component";
+import {UserFormComponent} from "./Profile/ui/components/user-form/user-form.component";
 
 @Component({
   selector: 'app-root',

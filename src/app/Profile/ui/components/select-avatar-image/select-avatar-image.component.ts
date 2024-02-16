@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { UserAvatarService } from '../../domain/services/user-avatar-service/user-avatar.service';
+import { UserAvatarService } from '../../../domain/services/user-avatar-service/user-avatar.service';
 
 @Component({
   selector: 'app-select-avatar-image',

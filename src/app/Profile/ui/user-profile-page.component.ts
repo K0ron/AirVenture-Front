@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { UserExpListComponent } from '../components/user-exp-list/user-exp-list.component';
-import { UserFormComponent } from '../components/user-form/user-form.component';
+import { UserExpListComponent } from './components/user-exp-list/user-exp-list.component';
+import { UserFormComponent } from './components/user-form/user-form.component';
 import { User } from '../domain/models/user-model';
 import { CommonModule } from '@angular/common';
 import { UserCard } from '../domain/models/user-card';
-import { UserAvatarComponent } from '../components/user-avatar/user-avatar.component';
+import { UserAvatarComponent } from './components/user-avatar/user-avatar.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle } from '@angular/material/dialog';
-import { DeleteAccountBlockComponent } from '../components/delete-account-block/delete-account-block.component';
+import { DeleteAccountBlockComponent } from './components/delete-account-block/delete-account-block.component';
 import { UserService } from '../domain/services/user-service/user.service';
 import { UserExpService } from '../domain/services/user-exp-service/user-exp.service';
 
