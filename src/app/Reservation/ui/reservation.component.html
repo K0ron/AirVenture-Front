@@ -1,0 +1,107 @@
+<div class="page">
+  <div>
+    <h1>{{ activity.name }}</h1>
+    <p>....</p>
+  </div>
+  <hr />
+  <div class="container">
+    <div class="galleryContainer">
+      <p-carousel [value]="activity.photo" [numVisible]="1" [circular]="true">
+        <ng-template let-photo pTemplate="item">
+          <div class="product-item">
+            <div class="product-item-content">
+              <img
+                src="{{ photo }}"
+                [alt]="activity.photo"
+                style="width: 100%; display: block"
+              />
+            </div>
+          </div>
+        </ng-template>
+      </p-carousel>
+    </div>
+
+    <div style="margin-bottom: 5%">
+      <h3 style="font-size: 24px">Titre explicatif</h3>
+      <p>
+        {{ activity.description }}
+      </p>
+    </div>
+
+    <div class="reservation-container">
+      <div class="reservation-map-container">
+        <app-map />
+      </div>
+      <div class="date-container">
+        <h4 style="font-size: 24px">Details</h4>
+        <mat-form-field>
+          <mat-label>Choisissez une date</mat-label>
+          <input matInput [matDatepicker]="picker" />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
+        </div>
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
+          <span>Total</span>
+          <span>{{ activity.price }} €</span>
+        </div>
+        <button
+          (click)="showModal()"
+          style="align-self: center"
+          class="resa"
+          mat-flat-button
+        >
+          Réservation
+        </button>
+        <p-dialog
+          header="Récapitulatif de la commande"
+          [(visible)]="modalIsVisible"
+          [modal]="true"
+          [style]="{ width: '50rem' }"
+          [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+        >
+          <div class="testContainer">
+            <p>Date :</p>
+            <p>activité : {{ activity.name }}</p>
+            <p>prix : {{ activity.price }}</p>
+          </div>
+
+          <ng-template
+            footer="Acceder au payement"
+            pTemplate="footer"
+            class="buttonContainer"
+          >
+            <p-button
+              label="Retour"
+              icon="pi pi-times"
+              severity="secondary"
+              pAutoFocus
+              [autofocus]="true"
+              (click)="modalIsVisible = false"
+            ></p-button>
+            <p-button
+              label="Acceder au payement"
+              icon="pi pi-check"
+              pAutoFocus
+              [autofocus]="true"
+            ></p-button>
+          </ng-template>
+        </p-dialog>
+      </div>
+    </div>
+  </div>
+</div>
