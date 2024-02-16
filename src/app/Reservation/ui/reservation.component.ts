@@ -5,9 +5,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { DateAdapter, MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { GalleriaModule } from 'primeng/galleria';
-import { MapComponent } from '../../components/map/map.component';
+import { MapComponent } from './map/map.component';
 import { ButtonModule } from 'primeng/button';
-import { Activity } from '../../model/Activity';
+import { Activity } from '../domain/model/Activity';
 import { DialogModule } from 'primeng/dialog';
 import { CarouselModule } from 'primeng/carousel';
 
