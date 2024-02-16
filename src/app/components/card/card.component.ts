@@ -45,6 +45,11 @@ export class CardComponent {
       (destination) => destination.type === 'outFrance'
     ).length;
   }
+  getCanadaDestinations() {
+    return this.destinations.filter(
+      (destination) => destination.type === 'canada'
+    ).length;
+  }
 
   destinationsCountRadioButton: string = 'all';
   searchText: string = '';

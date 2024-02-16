@@ -183,7 +183,7 @@ export const DESTINATIONS: Destination[] = [
   },
   {
     id: 16,
-    type: 'outFrance',
+    type: 'canada',
     name: 'Snowy Peaks',
     country: 'Canada',
     image:

@@ -20,4 +20,11 @@
         <span class="checkmark"></span>
         <span>{{ 'Hors de France('+outFrance+')' }}</span>
     </label>
+
+    <label class="radio-container">
+        <input type="radio" name="filter" value="canada" [(ngModel)]="selectedRadioButtonValue"
+            (change)="onRadioButtonSelectionChanged()" />
+        <span class="checkmark"></span>
+        <span>{{ 'Canada('+canada+')' }}</span>
+    </label>
 </div>

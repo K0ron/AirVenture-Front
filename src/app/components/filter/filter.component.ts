@@ -15,6 +15,7 @@ export class FilterComponent implements OnInit {
   @Input('total') all: number = 0;
   @Input() france: number = 0;
   @Input() outFrance: number = 0;
+  @Input() canada: number = 0;
 
   selectedRadioButtonValue: string = 'All';
 
