@@ -7,6 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { FilterComponent } from '../filter/filter.component';
+import { DESTINATIONS } from '../../domain/services/mock-destinations';
 
 @Component({
   selector: 'app-card',
@@ -24,53 +25,7 @@ import { FilterComponent } from '../filter/filter.component';
   styleUrl: './card.component.css',
 })
 export class CardComponent {
-  destinations: Destination[] = [
-    {
-      type: 'outFrance',
-      name: 'Parachute',
-      country: 'USA',
-      image:
-        'https://images.pexels.com/photos/7259161/pexels-photo-7259161.jpeg',
-      price: 10.0,
-      location: 'Salt Lake City, Utah',
-    },
-    {
-      type: 'outFrance',
-      name: 'Hiking',
-      country: 'Chili',
-      image:
-        'https://images.pexels.com/photos/868097/pexels-photo-868097.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      price: 9.99,
-      location: 'Torres del Paine, Chili',
-    },
-    {
-      type: 'outFrance',
-      name: 'Roadtrip',
-      country: 'Italy',
-      image:
-        'https://images.pexels.com/photos/1045535/pexels-photo-1045535.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      price: 17.5,
-      location: 'Tuscany',
-    },
-    {
-      type: 'outFrance',
-      name: 'Astrophoto',
-      country: 'Chili',
-      image:
-        'https://images.pexels.com/photos/2098427/pexels-photo-2098427.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      price: 24.5,
-      location: 'Atacama Desert, Chili',
-    },
-    {
-      type: 'france',
-      name: 'Parachute',
-      country: 'France',
-      image:
-        'https://images.pexels.com/photos/67298/parachute-paratrooper-parachutist-land-67298.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      price: 11.99,
-      location: 'Normandy',
-    },
-  ];
+  destinations: Destination[] = DESTINATIONS;
   filteredDestinations: Destination[] = [];
 
   constructor() {
@@ -88,6 +43,11 @@ export class CardComponent {
   getOutFranceDestinations() {
     return this.destinations.filter(
       (destination) => destination.type === 'outFrance'
+    ).length;
+  }
+  getCanadaDestinations() {
+    return this.destinations.filter(
+      (destination) => destination.type === 'canada'
     ).length;
   }
 
