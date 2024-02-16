@@ -70,3 +70,8 @@ img.not {
 .photo-activity {
   cursor: pointer;
 }
+
+.fav-icon {
+  color: #bcc1ba;
+  margin-left: 7rem;
+}

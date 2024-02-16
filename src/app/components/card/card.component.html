@@ -12,14 +12,16 @@
     <ng-container *ngFor="let destination of filteredDestinations">
         <div class="card-box"
             *ngIf="destinationsCountRadioButton === 'all' || destinationsCountRadioButton === destination.type">
-            <div class="card-box" *ngIf="searchText === '' || destination.name.toLowerCase().includes(searchText)">
+            <div class="card-inside" *ngIf="searchText === '' || destination.name.toLowerCase().includes(searchText)">
                 <mat-card-header>
                     <div mat-card-avatar class="header-image">
                         <img mat-card-avatar
                             src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                             alt="Avatar">
                     </div>
-
+                    <button mat-icon-button class="fav-icon" aria-label="icon-button">
+                        <mat-icon>favorite</mat-icon>
+                    </button>
                 </mat-card-header>
                 <img [src]="destination?.image" width="200" height="200" class="photo-activity">
                 <mat-card-title>{{destination.name}}</mat-card-title>
