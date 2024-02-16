@@ -6,11 +6,13 @@ import {AuthenticationComponent} from "./Authentification/ui/authentication.comp
 import {HttpClientModule} from '@angular/common/http';
 import {HomeComponent} from "./Home/ui/home.component";
 import {ReservationComponent} from "./Reservation/ui/reservation.component";
+import {UserProfilePageComponent} from "./Profile/ui/user-profile-page.component";
+import {UserFormComponent} from "./Profile/components/user-form/user-form.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, AuthenticationComponent, HomeComponent, HeaderComponent, ReservationComponent, HttpClientModule],
+  imports: [CommonModule, RouterOutlet, AuthenticationComponent, HomeComponent, HeaderComponent, ReservationComponent, UserProfilePageComponent, UserFormComponent, HttpClientModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
