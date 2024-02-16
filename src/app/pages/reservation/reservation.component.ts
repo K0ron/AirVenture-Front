@@ -47,6 +47,8 @@ export class ReservationComponent {
     this.modalIsVisible = true;
   }
 
+  OnDateSelected(): void {}
+
   ngOnInit() {
     this.activity = {
       id: '1',

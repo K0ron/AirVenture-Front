@@ -4,6 +4,7 @@ export class Activity {
   description?: string;
   duration?: string;
   location?: string;
+  country?: string;
   categoryId?: string;
   price?: string;
   photo: string[] = [];
