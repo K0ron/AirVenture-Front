@@ -8,6 +8,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { FilterComponent } from '../filter/filter.component';
 import { DESTINATIONS } from '../../../domain/services/mock-destinations';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card',
@@ -28,7 +29,7 @@ export class CardComponent {
   destinations: Destination[] = DESTINATIONS;
   filteredDestinations: Destination[] = [];
 
-  constructor() {
+  constructor(private router: Router) {
     this.filteredDestinations = this.destinations;
   }
 
@@ -61,5 +62,8 @@ export class CardComponent {
   onSearchTextEntered(searchValue: string) {
     this.searchText = searchValue;
     // console.log(this.searchText);
+  }
+  redirectToReservationPage(id: number) {
+    this.router.navigate(['/reservation', id]);
   }
 }
