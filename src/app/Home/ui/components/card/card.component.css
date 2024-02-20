@@ -69,9 +69,17 @@ img.not {
 
 .photo-activity {
   cursor: pointer;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 1rem;
 }
 
 .fav-icon {
   color: #bcc1ba;
   margin-left: 7rem;
+}
+
+.subtitle {
+  color: #5f5e5e;
+  font-size: 15px;
 }

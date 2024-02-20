@@ -1,8 +1,7 @@
-export class Destination {
+export class Activity {
   id: number;
-  type: string;
+  continent: string;
   name: string;
-  country: string;
   image: string;
   price: number;
   location: string;
@@ -10,9 +9,8 @@ export class Destination {
 
   constructor(
     id: number,
-    type: string,
+    continent: string,
     name: string,
-    country: string,
     image: string,
     price: number,
     location: string,
@@ -20,9 +18,8 @@ export class Destination {
   ) {
     this.description = description;
     this.id = id;
-    this.type = type;
+    this.continent = continent;
     this.name = name;
-    this.country = country;
     this.image = image;
     this.price = price;
     this.location = location;

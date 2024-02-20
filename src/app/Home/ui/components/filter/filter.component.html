@@ -8,23 +8,37 @@
     </label>
 
     <label class="radio-container">
-        <input type="radio" name="filter" value="france" [(ngModel)]="selectedRadioButtonValue"
+        <input type="radio" name="filter" value="europe" [(ngModel)]="selectedRadioButtonValue"
             (change)="onRadioButtonSelectionChanged()" />
         <span class="checkmark"></span>
-        <span>{{ 'France('+france+')' }}</span>
+        <span>{{ 'Europe('+europe+')' }}</span>
     </label>
 
     <label class="radio-container">
-        <input type="radio" name="filter" value="outFrance" [(ngModel)]="selectedRadioButtonValue"
+        <input type="radio" name="filter" value="ameriquedunord" [(ngModel)]="selectedRadioButtonValue"
             (change)="onRadioButtonSelectionChanged()" />
         <span class="checkmark"></span>
-        <span>{{ 'Hors de France('+outFrance+')' }}</span>
+        <span>{{ 'Amérique du Nord('+ameriquedunord+')' }}</span>
     </label>
 
     <label class="radio-container">
-        <input type="radio" name="filter" value="canada" [(ngModel)]="selectedRadioButtonValue"
+        <input type="radio" name="filter" value="ameriquedusud" [(ngModel)]="selectedRadioButtonValue"
             (change)="onRadioButtonSelectionChanged()" />
         <span class="checkmark"></span>
-        <span>{{ 'Canada('+canada+')' }}</span>
+        <span>{{ 'Amérique du Sud('+ameriquedusud+')' }}</span>
+    </label>
+
+    <label class="radio-container">
+        <input type="radio" name="filter" value="afrique" [(ngModel)]="selectedRadioButtonValue"
+            (change)="onRadioButtonSelectionChanged()" />
+        <span class="checkmark"></span>
+        <span>{{ 'Afrique('+afrique+')' }}</span>
+    </label>
+
+    <label class="radio-container">
+        <input type="radio" name="filter" value="asie" [(ngModel)]="selectedRadioButtonValue"
+            (change)="onRadioButtonSelectionChanged()" />
+        <span class="checkmark"></span>
+        <span>{{ 'Asie('+asie+')' }}</span>
     </label>
 </div>

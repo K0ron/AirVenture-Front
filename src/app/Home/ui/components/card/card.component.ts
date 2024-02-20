@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Destination } from '../../../domain/models/destination';
+import { Activity } from '../../../domain/models/Activity';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { FilterComponent } from '../filter/filter.component';
-import { DESTINATIONS } from '../../../domain/services/mock-destinations';
+import { ACTIVITIES } from '../../../domain/services/mock-activities';
 import { Router } from '@angular/router';
 
 @Component({
@@ -26,30 +26,38 @@ import { Router } from '@angular/router';
   styleUrl: './card.component.css',
 })
 export class CardComponent {
-  destinations: Destination[] = DESTINATIONS;
-  filteredDestinations: Destination[] = [];
+  activities: Activity[] = ACTIVITIES;
+  filteredDestinations: Activity[] = [];
 
   constructor(private router: Router) {
-    this.filteredDestinations = this.destinations;
+    this.filteredDestinations = this.activities;
   }
 
   getTotalDestinations() {
-    return this.destinations.length;
+    return this.activities.length;
   }
-  getFranceDestinations() {
-    return this.destinations.filter(
-      (destination) => destination.type === 'france'
+  getEuropeDestinations() {
+    return this.activities.filter((activity) => activity.continent === 'europe')
+      .length;
+  }
+  getAmeriqueDuNordDestinations() {
+    return this.activities.filter(
+      (activity) => activity.continent === 'ameriquedunord'
     ).length;
   }
-  getOutFranceDestinations() {
-    return this.destinations.filter(
-      (destination) => destination.type === 'outFrance'
+  getAmeriqueDuSudDestinations() {
+    return this.activities.filter(
+      (activity) => activity.continent === 'ameriquedusud'
     ).length;
   }
-  getCanadaDestinations() {
-    return this.destinations.filter(
-      (destination) => destination.type === 'canada'
+  getAfriqueDestinations() {
+    return this.activities.filter(
+      (activity) => activity.continent === 'afrique'
     ).length;
+  }
+  getAsieDestinations() {
+    return this.activities.filter((activity) => activity.continent === 'asie')
+      .length;
   }
 
   destinationsCountRadioButton: string = 'all';
