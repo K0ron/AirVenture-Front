@@ -4,6 +4,7 @@
 
 .form-input {
   margin-bottom: 20px;
+  width: 100%;
 }
 
 .info-inputs-container {
@@ -17,7 +18,7 @@
   justify-content: space-between;
 }
 
-.small-input {
+.same-line-container {
   width: 48%;
 }
 
@@ -25,7 +26,13 @@
   width: 60%;
   background-color: var(--primary-bg-color)!important;
   color: white!important;
-  margin-top: 40px;
+  margin-top: 20px;
   padding: 22px 0;
   font-weight: 500;
+}
+
+.formErrors {
+  margin: -35px 0px 16px;
+  color: red;
+  text-align: left;
 }

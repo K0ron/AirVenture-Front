@@ -27,7 +27,32 @@ input[type="file"] {
   margin-right: 5px;
 }
 
+.input-complement {
+  margin-bottom: 8px;
+  margin-top: 8px;
+}
+
 .upload-format {
   color: rgba(0, 0, 0, 0.6);
-  font-size: 12px
+  font-size: 12px;
+  margin-top: 0;
+}
+
+.filename-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.filename-icon {
+  color: var(--primary-elements-color);
+}
+
+.filename {
+  margin: 0 20px;
+}
+
+.filename-delete {
+  color: grey;
+  cursor: pointer;
 }
