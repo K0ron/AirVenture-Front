@@ -6,6 +6,6 @@ export class Activity {
   location?: string;
   country?: string;
   categoryId?: string;
-  price?: string;
+  price!: number;
   photo: string[] = [];
 }

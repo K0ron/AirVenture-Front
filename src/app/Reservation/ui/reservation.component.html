@@ -32,32 +32,43 @@
       <div class="reservation-map-container">
         <app-map />
       </div>
-      <div class="date-container">
+      <div class="details-container">
         <h4 style="font-size: 24px">Details</h4>
-        <mat-form-field>
-          <mat-label>Choisissez une date</mat-label>
-          <input matInput [matDatepicker]="picker" />
-          <mat-datepicker-toggle
-            matSuffix
-            [for]="picker"
-          ></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
         <div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
           aliquip ex ea commodo consequat.
         </div>
-        <div
-          style="
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-          "
-        >
-          <span>Total</span>
-          <span>{{ activity.price }} €</span>
+        <div>
+          <div class="calendarCustom">
+            <p-calendar
+              ngDefaultControl
+              [(ngModel)]="selectedDate"
+              [iconDisplay]="'input'"
+              [showIcon]="true"
+              dateFormat="dd/mm/yy"
+              [showTime]="true"
+            ></p-calendar>
+          </div>
+          <div class="infoPsition">
+            <p>Participants :</p>
+            <p-dropdown
+              ngDefaultControl
+              [options]="participants"
+              [(ngModel)]="selectedParticipant"
+              (onChange)="calculateTotalPrice()"
+            ></p-dropdown>
+          </div>
+
+          <div class="infoPsition">
+            <p>Prix par personnes</p>
+            <span>{{ activity.price }} €</span>
+          </div>
+          <div class="infoPsition">
+            <span>Total</span>
+            <span>{{ totalPrice }} €</span>
+          </div>
         </div>
         <button
           (click)="showModal()"
@@ -68,16 +79,17 @@
           Réservation
         </button>
         <p-dialog
-          header="Récapitulatif de la commande"
+          header="Récapitulatif de la réservation"
           [(visible)]="modalIsVisible"
           [modal]="true"
           [style]="{ width: '50rem' }"
           [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
         >
-          <div class="testContainer">
-            <p>Date :</p>
+          <div class="modalContainer">
+            <p>Date : {{ selectedDate | date : "dd/MM/yyyy - HH:mm" }}</p>
             <p>activité : {{ activity.name }}</p>
-            <p>prix : {{ activity.price }}</p>
+            <p>Particpants: {{ selectedParticipant }}</p>
+            <p>prix : {{ totalPrice }} €</p>
           </div>
 
           <ng-template
@@ -98,6 +110,7 @@
               icon="pi pi-check"
               pAutoFocus
               [autofocus]="true"
+              (onClick)="navigateToPayement()"
             ></p-button>
           </ng-template>
         </p-dialog>
