@@ -1,5 +1,5 @@
 <form class="activity-form" (ngSubmit)="onSubmitActivityCreation()" [formGroup]="activityCreationForm" #activityCreation="ngForm">
-  <app-activity-picture-upload-input (dataChange)="onFileUpload($event)"></app-activity-picture-upload-input>
+  <app-activity-picture-upload-input (dataChange)="onFileUpload($event)" [isFormSubmitted]="activityCreation.submitted"></app-activity-picture-upload-input>
 
   <div class="info-inputs-container">
     <div>
@@ -35,22 +35,24 @@
 
       <div class="same-line-container">
         <mat-form-field appearance="outline" class="form-input">
-          <mat-label>Duration</mat-label>
+          <mat-label>Duration (in hours)</mat-label>
           <input matInput placeholder="Activity duration" formControlName="duration">
         </mat-form-field>
         <div *ngIf="activityCreation.submitted && activityCreationForm.controls.duration.errors" class="formErrors">
           <span *ngIf="activityCreationForm.controls.duration.errors?.['required']">Please enter a duration for your activity</span>
+          <span *ngIf="activityCreationForm.controls.duration.errors?.['pattern']">Please enter only numbers</span>
         </div>
       </div>
     </div>
 
     <div>
       <mat-form-field appearance="outline" class="form-input">
-        <mat-label>Price</mat-label>
+        <mat-label>Price (in euros)</mat-label>
         <input matInput placeholder="Activity price" formControlName="price">
       </mat-form-field>
       <div *ngIf="activityCreation.submitted && activityCreationForm.controls.price.errors" class="formErrors">
         <span *ngIf="activityCreationForm.controls.price.errors?.['required']">Please enter a price for your activity</span>
+        <span *ngIf="activityCreationForm.controls.price.errors?.['pattern']">Please enter only numbers</span>
       </div>
     </div>
   </div>

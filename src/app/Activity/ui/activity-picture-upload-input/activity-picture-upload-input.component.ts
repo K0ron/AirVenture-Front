@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {MatIconModule} from "@angular/material/icon";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {NgIf} from "@angular/common";
@@ -17,6 +17,9 @@ import {NgIf} from "@angular/common";
 export class ActivityPictureUploadInputComponent {
   @Output()
   dataChange: EventEmitter<string> = new EventEmitter();
+
+  @Input()
+  isFormSubmitted: boolean = false;
 
   @ViewChild('fileInput') fileInput: any;
   filename: string = 'No file selected';

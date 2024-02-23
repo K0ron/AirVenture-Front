@@ -10,7 +10,7 @@ export class ActivityCreationService {
   constructor(private httpClient: HttpClient) { }
 
   createActivity(activity: Activity): Observable<boolean> {
-    return this.httpClient.post<any>("http://localhost:8080/activity", JSON.stringify(activity), {
+    return this.httpClient.post<any>("http://localhost:8080/activities", JSON.stringify(activity), {
       headers: {
         "Content-Type": "application/json"
       },

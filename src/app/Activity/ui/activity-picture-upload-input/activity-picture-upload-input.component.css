@@ -56,3 +56,9 @@ input[type="file"] {
   color: grey;
   cursor: pointer;
 }
+
+.formErrors {
+  margin-top: 5px;
+  color: red;
+  text-align: left;
+}

@@ -1,20 +1,26 @@
-<div class="upload-container">
-  <mat-icon class="upload-icon" fontIcon="upload"></mat-icon>
+<div>
+  <div class="upload-container">
+    <mat-icon class="upload-icon" fontIcon="upload"></mat-icon>
 
-  <div class="input-container">
-    <label for="file-upload" class="input-label">
-      Click to upload
-    </label>
-    <input #fileInput id="file-upload" type="file" (change)="onFileSelected($event)"/>
+    <div class="input-container">
+      <label for="file-upload" class="input-label">
+        Click to upload
+      </label>
+      <input #fileInput id="file-upload" type="file" (change)="onFileSelected($event)"/>
 
-    <p class="input-complement">or drag and drop</p>
+      <p class="input-complement">or drag and drop</p>
+    </div>
+
+    <p class="upload-format">SVG, PNG, JPG or GIF (max. 3MB)</p>
+
+    <div class="filename-container">
+      <mat-icon *ngIf="isFileSelected" class="filename-icon">description</mat-icon>
+      <p id="filename" class="filename">{{filename}}</p>
+      <mat-icon (click)="deleteFile()" *ngIf="isFileSelected" class="filename-delete">delete</mat-icon>
+    </div>
   </div>
 
-  <p class="upload-format">SVG, PNG, JPG or GIF (max. 3MB)</p>
-
-  <div class="filename-container">
-    <mat-icon *ngIf="isFileSelected" class="filename-icon">description</mat-icon>
-    <p id="filename" class="filename">{{filename}}</p>
-    <mat-icon (click)="deleteFile()" *ngIf="isFileSelected" class="filename-delete">delete</mat-icon>
+  <div *ngIf="isFormSubmitted && !isFileSelected" class="formErrors">
+    <span>Please upload a picture for your activity</span>
   </div>
 </div>

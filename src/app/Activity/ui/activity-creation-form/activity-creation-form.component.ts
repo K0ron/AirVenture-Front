@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {MatInputModule} from "@angular/material/input";
 import {
   ActivityPictureUploadInputComponent
@@ -8,6 +8,7 @@ import {FormBuilder, FormsModule, ReactiveFormsModule, Validators} from '@angula
 import {NgIf} from "@angular/common";
 import {ActivityCreationService} from "../../domain/services/activity-creation.service";
 import {Router} from "@angular/router";
+import {ActivityRequestDto} from "../../domain/dto/activity-request.dto";
 
 @Component({
   selector: 'app-activity-creation-form',
@@ -30,8 +31,8 @@ export class ActivityCreationFormComponent {
     name: ['', Validators.required],
     description: ['', Validators.required],
     location: ['', Validators.required],
-    duration: [0, Validators.required],
-    price: [0, Validators.required],
+    duration: [0, [Validators.required, Validators.pattern("^[0-9]*$")]],
+    price: [0, [Validators.required, Validators.pattern("^[0-9]*$")]],
     picture: ['', Validators.required],
   })
 
