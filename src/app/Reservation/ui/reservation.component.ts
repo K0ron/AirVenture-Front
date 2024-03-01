@@ -58,6 +58,7 @@ export class ReservationComponent {
     description: '',
     photo: [],
     price: 0,
+    location: '',
   };
 
   // Récupération Date selectionnée
@@ -95,9 +96,9 @@ export class ReservationComponent {
 
   navigateToPayement(): void {
     const reservationData = {
-      date: this.selectedDate,
+      reservationDate: this.selectedDate,
       activity: this.activity,
-      participants: this.selectedParticipant,
+      numberOfParticipants: this.selectedParticipant,
       reservationPrice: this.totalPrice,
     };
 
@@ -106,6 +107,7 @@ export class ReservationComponent {
     );
     reservations.push(reservationData);
     localStorage.setItem('reservation', JSON.stringify(reservations));
+    console.log('Reservations after update:', reservations);
 
     this.router.navigate(['/payement']);
   }
@@ -114,6 +116,7 @@ export class ReservationComponent {
     this.activity = {
       id: '1',
       name: "Bapteme de l'air",
+      location: 'France',
       description: 'Saut en parachute',
       price: 245,
       photo: [
