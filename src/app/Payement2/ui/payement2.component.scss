@@ -1,0 +1,176 @@
+.payement-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.info-container {
+  width: 55%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10%;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.reservation-container {
+  border: solid 0.5px #dfdfdf;
+  background-color: #f3f3f3;
+  width: 45%;
+  overflow: hidden;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.contact-block {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  gap: 25px;
+  margin-top: 10%;
+}
+
+.name-container {
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+  gap: 10px;
+  span {
+    width: 100%;
+  }
+  span > input {
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    border: #dfdfdf solid 1px;
+  }
+}
+
+.mail-container {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-bottom: 50px;
+  span {
+    width: 100%;
+  }
+  span > input {
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    border: #dfdfdf solid 1px;
+  }
+}
+
+.adress-container {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  gap: 25px;
+  margin-bottom: 50px;
+  span {
+    width: 100%;
+  }
+  span > input {
+    width: 100%;
+    height: 40px;
+    border: #dfdfdf solid 1px;
+    border-radius: 5px;
+  }
+}
+
+.city-container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  span > input {
+    height: 40px;
+    border: #dfdfdf solid 1px;
+    border-radius: 5px;
+  }
+}
+
+.payement-block {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  gap: 25px;
+  margin-bottom: 50px;
+  span {
+    width: 100%;
+  }
+  span > input {
+    width: 100%;
+    height: 40px;
+    border: #dfdfdf solid 1px;
+    border-radius: 5px;
+  }
+}
+
+.card-secu {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  span > input {
+    height: 40px;
+    border: #dfdfdf solid 1px;
+    border-radius: 5px;
+  }
+}
+
+button {
+  border: none;
+  background-color: #83b9b1;
+  font-weight: bold;
+  box-shadow: 0 5px 15px 0px rgba(131, 131, 131, 0.437);
+}
+
+.reservation-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.details-reservation {
+  margin-top: 10%;
+  width: 70%;
+}
+
+.img-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  img {
+    width: 300px;
+    height: auto;
+  }
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  margin-top: 4%;
+  margin-bottom: 4%;
+  border-top: #dfdfdf solid 0.5px;
+  border-bottom: #dfdfdf solid 0.5px;
+}
+
+.modal {
+  display: flex;
+  justify-content: center;
+  img {
+    width: 300px;
+    height: auto;
+  }
+}

@@ -53,12 +53,13 @@ export class ReservationComponent {
   reservationForm!: FormGroup;
 
   activity: Activity = {
-    id: '',
+    id: 0,
     name: '',
     description: '',
     photo: [],
     price: 0,
-    location: '',
+    continent: '',
+    country: '',
   };
 
   // Récupération Date selectionnée
@@ -109,14 +110,15 @@ export class ReservationComponent {
     localStorage.setItem('reservation', JSON.stringify(reservations));
     console.log('Reservations after update:', reservations);
 
-    this.router.navigate(['/payement']);
+    this.router.navigate(['/payement2']);
   }
 
   ngOnInit() {
     this.activity = {
-      id: '1',
+      id: 1,
       name: "Bapteme de l'air",
-      location: 'France',
+      country: 'France',
+      continent: 'Europe',
       description: 'Saut en parachute',
       price: 245,
       photo: [
