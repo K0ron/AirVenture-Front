@@ -116,7 +116,7 @@ export const ACTIVITIES: Activity[] = [
     continent: 'europe',
     name: 'Exploration de la Rome Antique',
     image:
-      'https://images.unsplash.com/photo-1562594283-72782b5fbefb?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      'https://images.unsplash.com/photo-1552832230-c0197dd311b5?q=80&w=1996&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     price: 2900,
     location: 'Rome, Italy',
     description:
@@ -127,7 +127,7 @@ export const ACTIVITIES: Activity[] = [
     continent: 'europe',
     name: 'Balade en Gondole à Venise',
     image:
-      'https://images.unsplash.com/photo-1606454639148-1909ec32c7df?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      'https://images.unsplash.com/photo-1638376851565-42db4491b05b?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     price: 3200,
     location: 'Venise, Italy',
     description:
@@ -138,7 +138,7 @@ export const ACTIVITIES: Activity[] = [
     continent: 'europe',
     name: 'Exploration de la Florence Renaissance',
     image:
-      'https://images.unsplash.com/photo-1541647371904-56d617a1d3d9?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      'https://images.unsplash.com/photo-1543429258-cc721a300e8a?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     price: 3000,
     location: 'Florence, Italy',
     description:
@@ -160,7 +160,7 @@ export const ACTIVITIES: Activity[] = [
     continent: 'europe',
     name: 'Randonnée dans les Dolomites italiennes',
     image:
-      'https://images.unsplash.com/photo-1592420243138-5c8699b8b37e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      'https://plus.unsplash.com/premium_photo-1676885540188-0044057cc684?q=80&w=2008&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     price: 4000,
     location: 'Dolomites, Italy',
     description:
@@ -182,7 +182,7 @@ export const ACTIVITIES: Activity[] = [
     continent: 'europe',
     name: "Promenade dans l'Alhambra de Grenade",
     image:
-      'https://images.unsplash.com/photo-1584374366761-93978f7bdf5c?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      'https://images.unsplash.com/photo-1484503369601-c5f45a1bf914?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     price: 3000,
     location: 'Grenade, Spain',
     description:
@@ -293,7 +293,7 @@ export const ACTIVITIES: Activity[] = [
     continent: 'ameriquedusud',
     name: 'Aventure en Patagonie',
     image:
-      'https://images.unsplash.com/photo-1578760988602-c16d2bc1b358?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      'https://images.unsplash.com/photo-1637580981009-c13f27517703?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     price: 3800,
     location: 'Torres del Paine, Chili',
     description:

@@ -1,15 +1,23 @@
 import { Injectable } from '@angular/core';
-import { Activity } from '../models/Activity';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Iactivity } from '../models/Iactivity';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ActivityService {
+  private baseUrl = 'http://localhost:8080/activities';
+
   constructor(private httpClient: HttpClient) {}
 
-  getAllActivities(): Observable<Activity[]> {
-    return this.httpClient.get<Activity[]>('http://localhost:8080/activities');
+  getAllActivities(): Observable<Iactivity[]> {
+    return this.httpClient.get<Iactivity[]>(this.baseUrl);
+  }
+
+  getActivitiesByContinent(continent: string): Observable<Iactivity[]> {
+    return this.httpClient.get<Iactivity[]>(
+      `${this.baseUrl}/filter?continent=${continent}`
+    );
   }
 }
