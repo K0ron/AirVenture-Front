@@ -53,7 +53,7 @@ export class CardComponent implements OnInit {
   }
   getAmeriqueDuSudDestinations() {
     return this.activities.filter(
-      (activity) => activity.continent === 'ameriquedusud'
+      (activity) => activity.continent === 'Ameriquedusud'
     ).length;
   }
   getAfriqueDestinations() {

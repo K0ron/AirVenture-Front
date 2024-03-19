@@ -13,7 +13,7 @@
     <ng-container *ngFor="let activity of activities">
         <div class="card-box"
             *ngIf="destinationsCountRadioButton === 'all' || destinationsCountRadioButton === activity.continent">
-            <div class="card-inside" *ngIf="searchText === '' || activity.name.toLowerCase().includes(searchText)">
+            <div *ngIf="searchText === '' || activity.name.toLowerCase().includes(searchText)">
                 <mat-card-header>
                     <div mat-card-avatar class="header-image">
                         <img mat-card-avatar
