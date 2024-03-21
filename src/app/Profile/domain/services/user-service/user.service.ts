@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from '../../../../Authentification/domain/models/User';
+import { ChangePasswordDTO } from '../../models/change-password-dto';
 
 
 @Injectable({
@@ -17,7 +17,11 @@ export class UserService {
     return this.userQueries.put<any>(`${this.baseURL}/${id}`, user);
   }
 
-
-
+  deleteUser(id:number):Observable<any> {
+    return this.userQueries.delete<any>(`${this.baseURL}/${id}`);
+  }
+  
+  changePassword(id:number, passwordData:ChangePasswordDTO):Observable<any> {
+    return this.userQueries.put<any>(`http://localhost:8080/password-forgotten/${id}`, passwordData);
+  }
 }
-

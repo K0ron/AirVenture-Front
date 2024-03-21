@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { User } from '../../../../Authentification/domain/models/User';
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +24,10 @@ export class UserLocalStorageHandlerService {
     return JSON.parse(userString);
     }
   }
-  
+
+  getUserIdFromLocalStorage():number {
+    const userFromLocalStorage = this.getUserFromLocalStorage();
+    const id = userFromLocalStorage.id;
+    return id;
+  }
 }

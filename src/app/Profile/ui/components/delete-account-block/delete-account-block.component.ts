@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle } from '@angular/material/dialog';
 import { DeleteAccountComponent } from '../delete-account-dialog/delete-account-dialog.component';
+import { LogOutDialogComponent } from '../log-out-dialog/log-out-dialog.component';
 
 @Component({
   selector: 'app-delete-account-block',
@@ -24,4 +25,7 @@ export class DeleteAccountBlockComponent {
     this.deleteDialog.open(DeleteAccountComponent)
   }
 
+  openLogOutDialog(){
+    this.deleteDialog.open(LogOutDialogComponent)
+  }
 }

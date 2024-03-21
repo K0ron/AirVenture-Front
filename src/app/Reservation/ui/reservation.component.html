@@ -6,19 +6,19 @@
   <hr />
   <div class="container">
     <div class="galleryContainer">
-      <p-carousel [value]="activity.photo" [numVisible]="1" [circular]="true">
-        <ng-template let-photo pTemplate="item">
+<!--       <p-carousel [value]="activity.image" [numVisible]="1" [circular]="true">
+ -->        <ng-template let-photo pTemplate="item">
           <div class="product-item">
             <div class="product-item-content">
               <img
                 src="{{ photo }}"
-                [alt]="activity.photo"
+                [alt]="activity.image"
                 style="width: 100%; display: block"
               />
             </div>
           </div>
         </ng-template>
-      </p-carousel>
+     <!--  </p-carousel> -->
     </div>
 
     <div style="margin-bottom: 5%">

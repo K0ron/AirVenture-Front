@@ -11,6 +11,13 @@
     height: 8em; 
 }
 
+.primary-color-button{
+    background-color: var(--primary-bg-color);
+    color: blue;
+}
+.mat-mdc-button:not(:disabled) {
+    color: rgb(255, 255, 255);
+    }
 
 .avatar-component-div{
     width: 30%;

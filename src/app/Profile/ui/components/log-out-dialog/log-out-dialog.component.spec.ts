@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UserCardComponent } from './user-card.component';
+import { LogOutDialogComponent } from './log-out-dialog.component';
 
-describe('UserCardComponent', () => {
-  let component: UserCardComponent;
-  let fixture: ComponentFixture<UserCardComponent>;
+describe('LogOutDialogComponent', () => {
+  let component: LogOutDialogComponent;
+  let fixture: ComponentFixture<LogOutDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UserCardComponent]
+      imports: [LogOutDialogComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(UserCardComponent);
+    fixture = TestBed.createComponent(LogOutDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

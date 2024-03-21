@@ -31,10 +31,13 @@ import { CarouselModule } from 'primeng/carousel';
 })
 export class ReservationComponent {
   activity: Activity = {
-    id: '',
+    id: 0,
     name: '',
     description: '',
-    photo: [],
+    image: '',
+    price: 0,
+    location: '',
+    continent: '',
   };
 
   modalIsVisible: boolean = false;
@@ -51,15 +54,17 @@ export class ReservationComponent {
 
   ngOnInit() {
     this.activity = {
-      id: '1',
+      id: 1,
       name: "Bapteme de l'air",
       description: 'Saut en parachute',
-      price: '300',
-      photo: [
+      price: 300,
+      image: 
         '../../../assets/photo/para.jpeg',
-        '../../../assets/photo/splash-parachute.94647fe.jpg',
-        '../../../assets/photo/parachute.jpeg',
-      ],
+ /*        '../../../assets/photo/splash-parachute.94647fe.jpg',
+        '../../../assets/photo/parachute.jpeg', */
+      
+      continent: "",
+      location:"",
     };
   }
 
