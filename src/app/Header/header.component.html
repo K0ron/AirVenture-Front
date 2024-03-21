@@ -1,18 +1,37 @@
-<div class="nav-bar-container">
-    <mat-toolbar color="primary">
-        <button mat-icon-button class="menu-icon" aria-label="icon-button">
-            <mat-icon>menu</mat-icon>
-        </button>
-        <span class="spacer">
-            <a routerLink="/home" class="logo-link">
-                <img src="../../../assets/airventure.svg" alt="Logo airventure" class="logo2">
-            </a>
-        </span>
-        <button mat-icon-button class="favorite-icon" aria-label="icon-button">
-            <mat-icon>favorite</mat-icon>
-        </button>
-        <button mat-icon-button class="share-icon" aria-label="share icon">
-            <mat-icon>share</mat-icon>
-        </button>
-    </mat-toolbar>
-</div>
+<mat-toolbar color="primary" id="header">
+  <button (click)="openNavigation()" mat-icon-button class="menu-icon" aria-label="icon-button">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <div class="navigation-menu" id="headerNav">
+    <mat-icon (click)="closeNavigation()" class="navigation-close">close</mat-icon>
+    <p class="navigation-title">AirVenture Navigation :</p>
+    <ul class="navigation-list">
+      <li routerLink="/home" (click)="closeNavigation()" class="navigation-link">Home</li>
+      <li routerLink="/reservation" (click)="closeNavigation()" class="navigation-link">Your reservation</li>
+      <li routerLink="/activity" (click)="closeNavigation()" class="navigation-link">Create an activity</li>
+      <li routerLink="/profile" (click)="closeNavigation()" class="navigation-link">Your profile</li>
+    </ul>
+  </div>
+
+  <span class="spacer">
+    <a routerLink="/home">
+      <img src="../../../assets/airventure.svg" alt="Logo airventure" class="header-logo">
+    </a>
+  </span>
+
+  <button routerLink="/profile" mat-icon-button>
+    <img
+      mat-card-avatar
+      src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+      alt="user avatar"
+      class="profil-picture"
+    />
+  </button>
+
+  <a routerLink="/login" (click)="onLogout()" mat-icon-button aria-label="logout icon">
+    <mat-icon>logout</mat-icon>
+  </a>
+</mat-toolbar>
+
+<span id="backgroundNavigation"></span>
