@@ -1,0 +1,11 @@
+.center-title {
+  text-align: center;
+  color: #555;
+  font-size: 22px;
+  font-weight: normal;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+.card-top {
+  margin-top: 5rem;
+}
