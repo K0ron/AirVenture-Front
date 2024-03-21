@@ -1,6 +1,7 @@
 
 .activites-block{
     margin-top:2em;
+    margin-bottom: 1em;
     width:100%;
     border:1px solid grey;
 }
@@ -30,3 +31,10 @@
     height: auto;
     max-width: 250px;
   }
+
+.show-more-activities-button {
+    background-color: var(--primary-bg-color);
+    margin : 2em, 0;
+    color: rgb(255, 255, 255);
+
+}

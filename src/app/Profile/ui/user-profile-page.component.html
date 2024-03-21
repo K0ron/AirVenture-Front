@@ -6,7 +6,5 @@
 </div>
 </div>
 <div class="expericences-container">
-<app-user-exp-list [userExpListFromPage]="userExpList"> 
+<app-user-exp-list [recentActivitiesFromPage]="recentActivities" [futureActivitiesFromPage]="futureActivities" [allFutureActivitiesFromPage]="allFutureActivities" [allRecentActivitiesFromPage]="allRecentActivities"> 
 </app-user-exp-list>
-<button mat-button class="primary-color-button" (click)="showMoreHandler()">{{buttonText}}</button>
-</div>

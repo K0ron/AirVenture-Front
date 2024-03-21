@@ -25,13 +25,14 @@ import { UserDatedActivity } from '../domain/models/user-dated-activity';
 
 export class UserProfilePageComponent implements OnInit{
   protected user!: User;
-  protected userExpList:UserDatedActivity[] = [];
-  protected buttonText:string = "show more activities";
-  private showMore:boolean=true;
   private allExp:UserDatedActivity[]=[];
   private noActivitiesMessage: string = "No activities yet";
   protected userReservations: Reservation[] = []; 
   protected userActivities:Activity[] = [];
+  protected recentActivities:UserDatedActivity[] = [];
+  protected futureActivities:UserDatedActivity[] = [];
+  protected allRecentActivities:UserDatedActivity[] = [];
+  protected allFutureActivities:UserDatedActivity[] = [];
 
 
   constructor(private userLocalStorageHandlerService:UserLocalStorageHandlerService, public deleteDialog:MatDialog ){}
@@ -39,6 +40,9 @@ export class UserProfilePageComponent implements OnInit{
 
   getUserActivitiesFromReservations(){
     this.userReservations = this.user.reservations;
+    const getDate = new Date().getTime();
+    const currentDate = new Date(getDate);
+
     if (this.userReservations !== null && this.userReservations !== undefined) {
       this.userReservations.forEach(reservation => {
         this.userActivities = reservation.activities;
@@ -51,28 +55,27 @@ export class UserProfilePageComponent implements OnInit{
             element.price,
             element.location,
             element.description,
-            reservation.detaReservation
+            new Date (reservation.detaReservation)
           );
-          this.userExpList.push(userDatedActivity); 
+          this.allExp.push(userDatedActivity); 
+        })
+        this.recentActivities = this.allExp.filter(exp => {
+          return exp.date.getTime() < currentDate.getTime();
+        });
+  
+        this.futureActivities = this.allExp.filter(exp => {
+          return exp.date.getTime() >= currentDate.getTime();
         });
       });
-    this.allExp = this.userExpList;
-    this.userExpList = this.userExpList.slice(-3); 
+        this.allRecentActivities=this.recentActivities;
+        this.allFutureActivities=this.futureActivities;
+
+      this.recentActivities = this.recentActivities.slice(0,3);
+      this.futureActivities = this.futureActivities.slice(0,3);
     } else {
       this.noActivitiesMessage;
     }
   } 
-    
-
-  showMoreHandler() {
-    this.showMore = !this.showMore;
-    if (this.showMore==true) {
-      this.userExpList = this.userExpList.slice(0,3);}
-    else {
-      this.buttonText = "show less activities";
-      this.userExpList= this.allExp
-    }
-  }
 
   ngOnInit(){
     this.user = this.userLocalStorageHandlerService.getUserFromLocalStorage(); 
