@@ -104,13 +104,13 @@ export class ReservationComponent {
     };
 
     const reservations = JSON.parse(
-      localStorage.getItem('reservations') || '[]'
+      localStorage.getItem('reservation') || '[]'
     );
     reservations.push(reservationData);
     localStorage.setItem('reservation', JSON.stringify(reservations));
-    console.log('Reservations after update:', reservations);
+    console.log('Reservation after update:', reservations);
 
-    this.router.navigate(['/payement2']);
+    this.router.navigate(['/payement']);
   }
 
   ngOnInit() {

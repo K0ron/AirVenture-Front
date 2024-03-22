@@ -13,7 +13,6 @@ export class Activity {
     country: string,
     name: string,
     price: number,
-    location: string,
     description: string,
     photo: string[]
   ) {

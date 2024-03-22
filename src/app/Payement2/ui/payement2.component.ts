@@ -5,18 +5,35 @@ import { Reservation } from '../../Reservation/domain/model/Reservation';
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
 import { DialogModule } from 'primeng/dialog';
-import { ReservationService } from '../../Reservation/domain/services/reservation.service';
+import { User } from '../../Profile/domain/models/user-model';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-payement',
   standalone: true,
-  imports: [DividerModule, ButtonModule, CommonModule, DialogModule],
+  imports: [
+    DividerModule,
+    ButtonModule,
+    CommonModule,
+    DialogModule,
+    ReactiveFormsModule,
+    FormsModule,
+  ],
   templateUrl: './payement2.component.html',
   styleUrl: './payement2.component.scss',
 })
 export class PayementComponent2 implements OnInit {
-  reservations: Reservation[] = [];
+  reservation: Reservation[] = [];
   modalIsVisible: boolean = false;
+  reservationForm!: FormGroup;
+  reservationDate: Date = new Date();
+  numberOfParticipents: number = 0;
+  reservationPrice: number = 0;
 
   activity: Activity = {
     id: 0,
@@ -28,6 +45,13 @@ export class PayementComponent2 implements OnInit {
     continent: '',
   };
 
+  user: User = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+  };
+
   getLocalReservation(): Reservation[] {
     return JSON.parse(localStorage.getItem('reservation') || '[]');
   }
@@ -36,11 +60,11 @@ export class PayementComponent2 implements OnInit {
     this.modalIsVisible = true;
   }
 
-  constructor(private reservationService: ReservationService) {}
+  constructor() {}
 
   ngOnInit() {
-    this.reservations = this.getLocalReservation();
-    console.log('Reservations:', this.reservations);
+    this.reservation = this.getLocalReservation();
+    console.log('Reservation:', this.reservation);
 
     this.activity = {
       id: 1,
@@ -54,6 +78,13 @@ export class PayementComponent2 implements OnInit {
         '../../../assets/photo/splash-parachute.94647fe.jpg',
         '../../../assets/photo/parachute.jpeg',
       ],
+    };
+
+    this.user = {
+      firstName: 'Kevin',
+      lastName: 'Caron',
+      email: 'KC@gmail.com',
+      password: '',
     };
   }
 
