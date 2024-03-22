@@ -16,7 +16,7 @@ import {NgIf} from "@angular/common";
 })
 export class ActivityPictureUploadInputComponent {
   @Output()
-  dataChange: EventEmitter<string> = new EventEmitter();
+  dataChange: EventEmitter<File> = new EventEmitter();
 
   @Input()
   isFormSubmitted: boolean = false;
@@ -29,7 +29,7 @@ export class ActivityPictureUploadInputComponent {
     if (event.target.files.length > 0) {
       this.filename = event.target.files[0].name;
       this.isFileSelected = true;
-      this.dataChange.emit(this.filename);
+      this.dataChange.emit(event.target.files[0]);
     } else {
       this.filename = 'No file selected';
       this.isFileSelected = false;

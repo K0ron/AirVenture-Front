@@ -36,12 +36,23 @@ export class ActivityCreationFormComponent {
     picture: ['', Validators.required],
   })
 
-  onFileUpload(filename: string): void {
-    this.activityCreationForm.patchValue({picture: filename});
+  activityPicture: File | null = null;
+
+  onFileUpload(file: File): void {
+    const picture = file ? file.name : null;
+    this.activityCreationForm.patchValue({ picture });
+    this.activityPicture = file ? file : null;
+    console.log(this.activityPicture)
   }
 
   onSubmitActivityCreation() {
     if (this.activityCreationForm.valid) {
+      this.activityCreationService.uploadPicture(this.activityPicture!).subscribe((isUploaded: boolean) => {
+        if (!isUploaded) {
+          console.log('There ahs been an error during the upload !')
+        }
+      })
+
       // @ts-ignore
       const activityDto = new ActivityRequestDto(this.activityCreationForm.get('name').value, this.activityCreationForm.get('description').value, this.activityCreationForm.get('location').value, this.activityCreationForm.get('duration').value, this.activityCreationForm.get('price').value, this.activityCreationForm.get('picture').value);
       this.activityCreationService.createActivity(activityDto).subscribe((isCreated: boolean) => {

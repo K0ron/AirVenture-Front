@@ -2,7 +2,7 @@ export interface Iactivity {
   id: number;
   continent: string;
   name: string;
-  image: string;
+  picture: string;
   price: number;
   location: string;
   description: string;
