@@ -21,8 +21,10 @@ import { UserLocalStorageHandlerService } from '../../../domain/services/user-lo
 export class ChangePasswordDialogComponent {
 
   packPassword!:ChangePasswordDTO;
-  errorMessage:String = "wrong password";
-  errorMessageHandler:boolean= false;
+  passwordErrorMessage:string = "wrong password";
+  passwordErrorMessageHandler:boolean= false;  
+  otherErrorsMessage:string = "An unexpected error occurredm the password could no be saved";
+  otherErrorMessageHandler:boolean= false;  
   showDefaultMessage:boolean = true;
 
   hide1 = true;
@@ -59,24 +61,26 @@ export class ChangePasswordDialogComponent {
     this.dialogRef.close(); 
   }
 
-  onSubmit() {
-  this.packPassword = this.getPasswords();
-  const id = this.UserLocalStorageHandlerService.getUserIdFromLocalStorage();
+  hideWrongPasswordError() {
+    this.passwordErrorMessageHandler = false;
+  }
 
-  this.userService.changePassword(id, this.packPassword).subscribe(
-    (response) => {
-      console.log(response, "password updated");
-      this.showDefaultMessage = false;
-    },
-    (error) => {
-      console.log(error.message)
-      if (error.status === 400) {
-          console.log("Wrong password")
-          this.errorMessageHandler = true;
-      } else {
-          console.error("An error occurred");
+  onSubmit() {
+    this.packPassword = this.getPasswords();
+    const id = this.UserLocalStorageHandlerService.getUserIdFromLocalStorage();
+    this.userService.changePassword(id, this.packPassword).subscribe(
+      (response) => {
+        console.log(response, "password updated");
+        this.showDefaultMessage = false;
+      },
+      (error) => {
+        console.log(error.message)
+        if (error.status === 400) {
+            this.passwordErrorMessageHandler = true;
+        } else {
+          this.otherErrorMessageHandler =true;
+        }
       }
-    }
-  );
-}
+    );
+  }
  }

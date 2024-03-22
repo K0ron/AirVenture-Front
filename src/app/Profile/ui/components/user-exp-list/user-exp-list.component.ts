@@ -1,18 +1,20 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, ViewChild, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardComponent } from '../../../../Home/ui/components/card/card.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { UserDatedActivity } from '../../../domain/models/user-dated-activity';
+import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
+
 
 @Component({
   selector: 'app-user-exp-list',
   standalone: true,
-  imports: [CardComponent, CommonModule, MatCardModule, MatIconModule],
+  imports: [CardComponent, CommonModule, MatCardModule, MatIconModule, MatPaginatorModule],
   templateUrl: './user-exp-list.component.html',
   styleUrl: './user-exp-list.component.css'
 })
-export class UserExpListComponent implements OnChanges{
+export class UserExpListComponent implements OnChanges, OnInit{
 
   @Input()
   public recentActivitiesFromPage:UserDatedActivity[] = [];
@@ -22,13 +24,15 @@ export class UserExpListComponent implements OnChanges{
   public allRecentActivitiesFromPage:UserDatedActivity[] = [];
   @Input()
   public allFutureActivitiesFromPage:UserDatedActivity[] = [];
-  protected recentButtonText:string = "show more recent activities";
-  protected futureButtonText:string = "show more future activities";
-  private showMoreRecent:boolean=true;
-  private showMoreFuture:boolean=true;
-  
 
-
+  protected pagedRecentActivities: UserDatedActivity[] = [];
+  protected pagedFutureActivities: UserDatedActivity[] = []; 
+  protected recentPageSize = 3; 
+  protected futurePageSize = 3; 
+  protected recentPageSizeOptions: number[] = [1, 2, 3, 4, 5, 8];
+  protected futurePageSizeOptions: number[] = [1, 2, 3, 4, 5, 8];
+  protected recentPaginatorSize!:number;
+  protected futurePaginatorSize!:number;
 
   ngOnChanges(changes:SimpleChanges): void { 
     if(changes['recentActivitiesFromPage'].currentValue != changes['recentActivitiesFromPage'].previousValue){ 
@@ -38,26 +42,27 @@ export class UserExpListComponent implements OnChanges{
       this.futureActivitiesFromPage=changes['futureActivitiesFromPage'].currentValue
     }
   }
-
-  showMoreRecentHandler() {
-    this.showMoreRecent = !this.showMoreRecent;
-    this.recentButtonText = this.showMoreRecent ? "show less recent activities" : "show more recent activities";
-
-    if (this.showMoreRecent) {
-        this.recentActivitiesFromPage = this.allRecentActivitiesFromPage.slice(0, 3);
-    } else {
-        this.recentActivitiesFromPage = this.allRecentActivitiesFromPage;
-    }
+  
+  onRecentActivitiesPageChange(event: any) {
+    const startIndex = event.pageIndex * event.pageSize;   
+    const endIndex = startIndex + event.pageSize;
+    this.pagedRecentActivities = this.allRecentActivitiesFromPage.slice(startIndex, endIndex);
+    this.recentPaginatorSize = Math.ceil(this.allRecentActivitiesFromPage.length / event.pageSize); 
   }
 
-  showMoreFutureHandler() {
-    this.showMoreFuture = !this.showMoreFuture;
-    this.futureButtonText = this.showMoreFuture ? "show less future activities" : "show more future activities";
-
-    if (this.showMoreFuture) {
-        this.futureActivitiesFromPage = this.allFutureActivitiesFromPage.slice(0, 3);
-    } else {
-        this.futureActivitiesFromPage = this.allFutureActivitiesFromPage;
-    }
+  onFutureActivitiesPageChange(event: any) {
+    const startIndex = event.pageIndex * event.pageSize;
+    const endIndex = startIndex + event.pageSize;
+    this.pagedFutureActivities = this.allFutureActivitiesFromPage.slice(startIndex, endIndex);
+    this.futurePaginatorSize = Math.ceil(this.allFutureActivitiesFromPage.length / event.pageSize); 
   }
+
+  ngOnInit(): void {
+    this.recentPaginatorSize = Math.ceil(this.allRecentActivitiesFromPage.length / this.recentPageSize);
+    this.futurePaginatorSize = Math.ceil(this.allFutureActivitiesFromPage.length / this.recentPageSize); 
+    this.pagedRecentActivities = this.recentActivitiesFromPage;
+    this.pagedFutureActivities = this.futureActivitiesFromPage;
+
+  }
+
 }

@@ -12,6 +12,7 @@ import { Activity } from '../../Reservation/domain/model/Activity';
 import { Reservation } from '../domain/models/reservation';
 import { UserDatedActivity } from '../domain/models/user-dated-activity';
 
+
 @Component({
     selector: 'app-user-profile-page',
     standalone: true,
@@ -58,7 +59,9 @@ export class UserProfilePageComponent implements OnInit{
             new Date (reservation.detaReservation)
           );
           this.allExp.push(userDatedActivity); 
+          this.allExp = this.allExp.sort((a, b) => a.date.getTime() - b.date.getTime());
         })
+
         this.recentActivities = this.allExp.filter(exp => {
           return exp.date.getTime() < currentDate.getTime();
         });
