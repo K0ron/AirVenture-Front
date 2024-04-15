@@ -1,10 +1,10 @@
-import { Component, Input, OnChanges, SimpleChanges, ViewChild, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardComponent } from '../../../../Home/ui/components/card/card.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { UserDatedActivity } from '../../../domain/models/user-dated-activity';
-import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 @Component({
@@ -15,6 +15,7 @@ import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
   styleUrl: './user-exp-list.component.css'
 })
 export class UserExpListComponent implements OnChanges, OnInit{
+
 
   @Input()
   public recentActivitiesFromPage:UserDatedActivity[] = [];
@@ -29,17 +30,18 @@ export class UserExpListComponent implements OnChanges, OnInit{
   protected pagedFutureActivities: UserDatedActivity[] = []; 
   protected recentPageSize = 3; 
   protected futurePageSize = 3; 
-  protected recentPageSizeOptions: number[] = [1, 2, 3, 4, 5, 8];
-  protected futurePageSizeOptions: number[] = [1, 2, 3, 4, 5, 8];
+  protected recentPageSizeOptions: number[] = [1, 2, 3, 4, 5];
+  protected futurePageSizeOptions: number[] = [1, 2, 3, 4, 5];
   protected recentPaginatorSize!:number;
   protected futurePaginatorSize!:number;
 
-  ngOnChanges(changes:SimpleChanges): void { 
-    if(changes['recentActivitiesFromPage'].currentValue != changes['recentActivitiesFromPage'].previousValue){ 
-      this.recentActivitiesFromPage=changes['recentActivitiesFromPage'].currentValue
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if ('recentActivitiesFromPage' in changes && changes['recentActivitiesFromPage'].currentValue !== undefined) {
+      this.recentActivitiesFromPage = changes['recentActivitiesFromPage'].currentValue;
     }
-    if(changes['futureActivitiesFromPage'].currentValue != changes['futureActivitiesFromPage'].previousValue){ 
-      this.futureActivitiesFromPage=changes['futureActivitiesFromPage'].currentValue
+    if ('futureActivitiesFromPage' in changes && changes['futureActivitiesFromPage'].currentValue !== undefined) {
+      this.futureActivitiesFromPage = changes['futureActivitiesFromPage'].currentValue;
     }
   }
   
@@ -62,7 +64,6 @@ export class UserExpListComponent implements OnChanges, OnInit{
     this.futurePaginatorSize = Math.ceil(this.allFutureActivitiesFromPage.length / this.recentPageSize); 
     this.pagedRecentActivities = this.recentActivitiesFromPage;
     this.pagedFutureActivities = this.futureActivitiesFromPage;
-
   }
 
 }

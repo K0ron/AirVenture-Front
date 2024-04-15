@@ -7,10 +7,10 @@ export class UserLocalStorageHandlerService {
 
   constructor() { }
 
-  saveUserInLocalStorage(user:string, objectToStock:any) {
-    let localStorageGetItem = localStorage.getItem('user')
+  saveUserIdInLocalStorage(user:string, objectToStock:any) {
+    let localStorageGetItem = localStorage.getItem('userId')
     if (localStorageGetItem !== null){
-      localStorage.removeItem('user');
+      localStorage.removeItem('userId');
       const objectToString = JSON.stringify(objectToStock);
       localStorage.setItem(user, objectToString);
     } else {
@@ -18,16 +18,11 @@ export class UserLocalStorageHandlerService {
       localStorage.setItem(user, objectToString);
   }}
 
-  getUserFromLocalStorage(){
-    const userString = localStorage.getItem('user');
+  getUserIdFromLocalStorage(){
+    const userString = localStorage.getItem('userId');
     if(userString) {
     return JSON.parse(userString);
     }
   }
 
-  getUserIdFromLocalStorage():number {
-    const userFromLocalStorage = this.getUserFromLocalStorage();
-    const id = userFromLocalStorage.id;
-    return id;
-  }
 }

@@ -21,9 +21,11 @@ export class AuthenticationService {
     }).pipe(
       map(response => {
         if (response.status === 200) {
-          console.log(response)
+          console.log(response.body)
           localStorage.setItem('LoggedIn', 'true');
-          this.userLocalStorageHandlerService.saveUserInLocalStorage("user", response.body);
+          let userFromBack:User = response.body;
+          console.log(userFromBack.id)
+          let idUserFromBack = this.userLocalStorageHandlerService.saveUserIdInLocalStorage("userId", userFromBack.id);
           return true;
         }
         return false;

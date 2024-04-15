@@ -27,7 +27,7 @@ export class ConfirmationDialogComponent {
 
   confirmationUpdate() {
     this.userService.updateUser(this.combinedData.userData.id, this.combinedData.formData).subscribe(Data => {
-      this.userLocalStorageHandlerService.saveUserInLocalStorage('user', Data)
+      this.userLocalStorageHandlerService.saveUserIdInLocalStorage('user', Data)
     })
     this.showDefaultMessage = false;
   }

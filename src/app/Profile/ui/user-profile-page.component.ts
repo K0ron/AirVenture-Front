@@ -1,3 +1,4 @@
+import { UserService } from './../domain/services/user-service/user.service';
 import { Component, OnInit } from '@angular/core';
 import { UserExpListComponent } from './components/user-exp-list/user-exp-list.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
@@ -26,6 +27,7 @@ import { UserDatedActivity } from '../domain/models/user-dated-activity';
 
 export class UserProfilePageComponent implements OnInit{
   protected user!: User;
+  protected showActivities: boolean = false;
   private allExp:UserDatedActivity[]=[];
   private noActivitiesMessage: string = "No activities yet";
   protected userReservations: Reservation[] = []; 
@@ -36,7 +38,7 @@ export class UserProfilePageComponent implements OnInit{
   protected allFutureActivities:UserDatedActivity[] = [];
 
 
-  constructor(private userLocalStorageHandlerService:UserLocalStorageHandlerService, public deleteDialog:MatDialog ){}
+  constructor(private userLocalStorageHandlerService:UserLocalStorageHandlerService, public userService: UserService, public deleteDialog:MatDialog ){}
 
 
   getUserActivitiesFromReservations(){
@@ -80,9 +82,26 @@ export class UserProfilePageComponent implements OnInit{
     }
   } 
 
+  getUser(): void {
+    const userId = this.userLocalStorageHandlerService.getUserIdFromLocalStorage();
+    this.userService.getUserById(userId).subscribe(
+      (data) => {
+        this.user = data;
+        this.getUserActivitiesFromReservations();
+      },
+      (error) => {
+        console.error('Something went wrong', error);
+      }
+    );
+  }
+
+  activityHandler(){
+    this.showActivities = !this.showActivities;
+    console.log(this.showActivities)
+  }
+
   ngOnInit(){
-    this.user = this.userLocalStorageHandlerService.getUserFromLocalStorage(); 
-    this.getUserActivitiesFromReservations();
+    this.getUser();
   }
 
 }
