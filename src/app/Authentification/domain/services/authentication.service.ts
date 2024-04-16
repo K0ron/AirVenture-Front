@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {catchError, map, Observable, pipe} from "rxjs";
 import {User} from "../models/User";
 import { UserLocalStorageHandlerService } from '../../../Profile/domain/services/user-local-storage/user-local-storage-handler.service';
+import { UserIdDTO } from '../../../Profile/domain/models/userIdDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -21,11 +22,9 @@ export class AuthenticationService {
     }).pipe(
       map(response => {
         if (response.status === 200) {
-          console.log(response.body)
           localStorage.setItem('LoggedIn', 'true');
-          let userFromBack:User = response.body;
-          console.log(userFromBack.id)
-          let idUserFromBack = this.userLocalStorageHandlerService.saveUserIdInLocalStorage("userId", userFromBack.id);
+          let userFromBack:UserIdDTO = response.body;
+          this.userLocalStorageHandlerService.saveUserIdInLocalStorage("userId", userFromBack.id);
           return true;
         }
         return false;
