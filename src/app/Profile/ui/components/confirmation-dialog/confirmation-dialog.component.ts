@@ -22,12 +22,11 @@ export class ConfirmationDialogComponent {
   
   showDefaultMessage: boolean = true;
 
-  constructor (private userService: UserService, @Inject(MAT_DIALOG_DATA) public combinedData: any, private userLocalStorageHandlerService:UserLocalStorageHandlerService) {
+  constructor (private userService: UserService, @Inject(MAT_DIALOG_DATA) public combinedData: any) {
   }
 
   confirmationUpdate() {
     this.userService.updateUser(this.combinedData.userData.id, this.combinedData.formData).subscribe(Data => {
-      this.userLocalStorageHandlerService.saveUserIdInLocalStorage('user', Data)
     })
     this.showDefaultMessage = false;
   }
