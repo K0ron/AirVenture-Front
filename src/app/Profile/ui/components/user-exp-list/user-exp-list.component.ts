@@ -49,14 +49,14 @@ export class UserExpListComponent implements OnChanges, OnInit{
     const startIndex = event.pageIndex * event.pageSize;   
     const endIndex = startIndex + event.pageSize;
     this.pagedRecentActivities = this.allRecentActivitiesFromPage.slice(startIndex, endIndex);
-    this.recentPaginatorSize = Math.ceil(this.allRecentActivitiesFromPage.length / event.pageSize); 
+    this.recentPaginatorSize = Math.ceil(this.allRecentActivitiesFromPage.length); 
   }
 
   onFutureActivitiesPageChange(event: any) {
-    const startIndex = event.pageIndex * event.pageSize;
-    const endIndex = startIndex + event.pageSize;
+    const startIndex = event.pageIndex * event.pageSize ;
+    const endIndex = startIndex  + event.pageSize;
     this.pagedFutureActivities = this.allFutureActivitiesFromPage.slice(startIndex, endIndex);
-    this.futurePaginatorSize = Math.ceil(this.allFutureActivitiesFromPage.length / event.pageSize); 
+    this.futurePaginatorSize = Math.ceil(this.allFutureActivitiesFromPage.length);
   }
 
   ngOnInit(): void {

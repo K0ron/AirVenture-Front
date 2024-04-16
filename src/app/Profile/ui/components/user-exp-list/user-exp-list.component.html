@@ -1,49 +1,52 @@
 <div class="all-activities">
-    <div class="activites-block"> 
-        <h2 class="activities-title">Your recent activities</h2>
-        <mat-card class="card-container">
-            <ng-container *ngFor="let destination of pagedRecentActivities">
-                <div class="card-box">
-                        <img [src]="destination?.image" width="200" height="200" class="photo-activity">
-                        <mat-card-title>{{destination.name}}</mat-card-title>
-                        <mat-card-subtitle>{{destination.location}}</mat-card-subtitle>
-                        <p><b>{{destination.continent}}</b></p>
-                        <p><b>Price: EUR {{destination.price}}</b></p>        
-                        <p><b>Date: {{destination.date | date : "dd/MM/yyyy"}}</b></p>
-                    </div>
-            </ng-container>
-            <ng-template #noResultsTemplate>
-                <img src="../../../assets/notf.png" alt="Logo" class="not">
-            </ng-template>
-        </mat-card>
-        <mat-paginator [length]="recentPaginatorSize"
-            [pageSize]="recentPageSize"
-            [pageSizeOptions]="recentPageSizeOptions"
-            (page)="onRecentActivitiesPageChange($event)">
-        </mat-paginator>
+    <div>
+        <div class="activites-block"> 
+            <h2 class="activities-title">Your recent activities</h2>
+            <mat-card class="card-container">
+                <ng-container *ngFor="let destination of pagedRecentActivities">
+                    <div class="card-box">
+                            <img [src]="destination?.image" width="200" height="200" class="photo-activity">
+                            <mat-card-title>{{destination.name}}</mat-card-title>
+                            <mat-card-subtitle>{{destination.location}}</mat-card-subtitle>
+                            <p><b>{{destination.continent}}</b></p>
+                            <p><b>Price: EUR {{destination.price}}</b></p>        
+                            <p><b>Date: {{destination.date | date : "dd/MM/yyyy"}}</b></p>
+                        </div>
+                </ng-container>
+                <ng-template #noResultsTemplate>
+                    <img src="../../../assets/notf.png" alt="Logo" class="not">
+                </ng-template>
+            </mat-card>
+            <mat-paginator [length]="recentPaginatorSize"
+                [pageSize]="recentPageSize"
+                [pageSizeOptions]="recentPageSizeOptions"
+                (page)="onRecentActivitiesPageChange($event)">
+            </mat-paginator>
+        </div>
     </div>
-
-    <div class="activites-block"> 
-        <h2 class="activities-title">Your future activities</h2>
-        <mat-card class="card-container">
-            <ng-container *ngFor="let destination of pagedFutureActivities">
-                <div class="card-box">
-                        <img [src]="destination?.image" width="200" height="200" class="photo-activity">
-                        <mat-card-title>{{destination.name}}</mat-card-title>
-                        <mat-card-subtitle>{{destination.location}}</mat-card-subtitle>
-                        <p><b>{{destination.continent}}</b></p>
-                        <p><b>Price: EUR {{destination.price}}</b></p>        
-                        <p><b>Date: {{destination.date | date : "dd/MM/yyyy"}}</b></p>
-                    </div>
-            </ng-container>
-            <ng-template #noResultsTemplate>
-                <img src="../../../assets/notf.png" alt="Logo" class="not">
-            </ng-template>
-        </mat-card>
-        <mat-paginator [length]="futurePaginatorSize"
-            [pageSize]="futurePageSize"
-            [pageSizeOptions]="futurePageSizeOptions"
-            (page)="onFutureActivitiesPageChange($event)">
-        </mat-paginator>
+    <div>
+        <div class="activites-block"> 
+            <h2 class="activities-title">Your future activities</h2>
+            <mat-card class="card-container">
+                <ng-container *ngFor="let destination of pagedFutureActivities">
+                    <div class="card-box">
+                            <img [src]="destination?.image" width="200" height="200" class="photo-activity">
+                            <mat-card-title>{{destination.name}}</mat-card-title>
+                            <mat-card-subtitle>{{destination.location}}</mat-card-subtitle>
+                            <p><b>{{destination.continent}}</b></p>
+                            <p><b>Price: EUR {{destination.price}}</b></p>        
+                            <p><b>Date: {{destination.date | date : "dd/MM/yyyy"}}</b></p>
+                        </div>
+                </ng-container>
+                <ng-template #noResultsTemplate>
+                    <img src="../../../assets/notf.png" alt="Logo" class="not">
+                </ng-template>
+            </mat-card>
+            <mat-paginator [length]="futurePaginatorSize"
+                [pageSize]="futurePageSize"
+                [pageSizeOptions]="futurePageSizeOptions"
+                (page)="onFutureActivitiesPageChange($event)">
+            </mat-paginator>
+        </div>
     </div>
 </div>
