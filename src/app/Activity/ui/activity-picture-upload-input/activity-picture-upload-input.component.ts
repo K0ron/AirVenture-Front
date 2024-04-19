@@ -27,9 +27,13 @@ export class ActivityPictureUploadInputComponent {
 
   onFileSelected(event: any) {
     if (event.target.files.length > 0) {
-      this.filename = event.target.files[0].name;
-      this.isFileSelected = true;
-      this.dataChange.emit(event.target.files[0]);
+      if(event.target.files[0].size > 1048576) {
+        alert('Your file is too heavy !');
+      } else {
+        this.filename = event.target.files[0].name;
+        this.isFileSelected = true;
+        this.dataChange.emit(event.target.files[0]);
+      }
     } else {
       this.filename = 'No file selected';
       this.isFileSelected = false;

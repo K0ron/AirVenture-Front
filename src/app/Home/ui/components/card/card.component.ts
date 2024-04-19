@@ -37,7 +37,16 @@ export class CardComponent implements OnInit {
   ngOnInit() {
     this.activityService
       .getAllActivities()
-      .subscribe((data) => (this.activities = data));
+      .subscribe((data) => {
+          this.activities = data;
+          data.forEach((activity, index) => {
+            this.activityService.getActivityPicture(activity.id).subscribe((picture) => {
+              this.activities[index].picture = URL.createObjectURL(picture);
+            });
+          })
+        }
+      );
+
   }
   getTotalDestinations() {
     return this.activities.length;

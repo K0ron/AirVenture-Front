@@ -15,6 +15,10 @@ export class ActivityService {
     return this.httpClient.get<Iactivity[]>(this.baseUrl);
   }
 
+  getActivityPicture(activityId: number): Observable<Blob> {
+    return this.httpClient.get(`http://localhost:8080/files/${activityId}`, { responseType: 'blob' })
+  }
+
   getActivitiesByContinent(continent: string): Observable<Iactivity[]> {
     return this.httpClient.get<Iactivity[]>(
       `${this.baseUrl}/filter?continent=${continent}`

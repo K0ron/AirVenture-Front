@@ -24,7 +24,7 @@
                         <mat-icon>favorite</mat-icon>
                     </button>
                 </mat-card-header>
-                <img [src]="'http://127.0.0.1:8081/' + activity.picture" width="200" height="230" class="photo-activity">
+                <img [src]="activity.picture" width="200" height="230" class="photo-activity">
                 <mat-card-title>{{activity.name}}</mat-card-title>
                 <mat-card-subtitle class="subtitle">{{activity.location}}</mat-card-subtitle>
                 <p><b>Duration: {{activity.duration}}</b></p>
