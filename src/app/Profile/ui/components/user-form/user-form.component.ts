@@ -3,60 +3,80 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { User } from '../../../domain/models/user-model';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatInputModule} from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 import { ChangePasswordDialogComponent } from '../change-password-dialog/change-password-dialog.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
-
-
-
 @Component({
   selector: 'app-user-form',
   standalone: true,
-  imports: [ReactiveFormsModule, HttpClientModule,CommonModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatToolbarModule],
+  imports: [
+    ReactiveFormsModule,
+    HttpClientModule,
+    CommonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule,
+    MatToolbarModule,
+  ],
   templateUrl: './user-form.component.html',
   styleUrl: './user-form.component.css',
 })
-
-export class UserFormComponent implements OnChanges{
+export class UserFormComponent implements OnChanges {
   @Input() userFromPage: User;
   hide = true;
 
-  editUserForm = this.fb.group({
-
-    firstName: ["", [Validators.required]],
-    lastName: ["", [Validators.required]],
-    email: ["", [Validators.required]],
-    password: ["", []]},
+  editUserForm = this.fb.group(
     {
-    });
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      email: ['', [Validators.required]],
+      password: ['', []],
+      phone: ['', [Validators.required]],
+    },
+    {}
+  );
 
-  constructor(private fb: FormBuilder, public confirmationDialog: MatDialog, public changePasswordDialog: MatDialog ) {
-    this.userFromPage={firstName:"", lastName:"", email:"",password:""};
+  constructor(
+    private fb: FormBuilder,
+    public confirmationDialog: MatDialog,
+    public changePasswordDialog: MatDialog
+  ) {
+    this.userFromPage = {
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+    };
   }
 
-
-  ngOnChanges(changes:SimpleChanges): void { //fonctionne avec les @Inputs et detecte tous les changements dans tous les @Inputs. changes est un objet qui permet voir les changements du Input.
-    if(changes['userFromPage'].currentValue != changes['userFromPage'].previousValue){ //ici on compare s'il y a eu un changement entre la valeur précedente et l'actuelle
-      console.log(changes) //grace a console log, on voit quel sort dobject c'est et comment acceder a ses proprietés
-      this.userFromPage=changes['userFromPage'].currentValue[0] //ici on attribue la nouvelle valeur, qui vient dans un array.
-      console.log(this.userFromPage)
+  ngOnChanges(changes: SimpleChanges): void {
+    //fonctionne avec les @Inputs et detecte tous les changements dans tous les @Inputs. changes est un objet qui permet voir les changements du Input.
+    if (
+      changes['userFromPage'].currentValue !=
+      changes['userFromPage'].previousValue
+    ) {
+      //ici on compare s'il y a eu un changement entre la valeur précedente et l'actuelle
+      console.log(changes); //grace a console log, on voit quel sort dobject c'est et comment acceder a ses proprietés
+      this.userFromPage = changes['userFromPage'].currentValue[0]; //ici on attribue la nouvelle valeur, qui vient dans un array.
+      console.log(this.userFromPage);
       this.setFormValues();
     }
   }
 
-  setFormValues(){
+  setFormValues() {
     this.editUserForm.patchValue({
       firstName: this.userFromPage.firstName,
       lastName: this.userFromPage.lastName,
       email: this.userFromPage.email,
-    })
-      console.log(this.editUserForm.value)
+    });
+    console.log(this.editUserForm.value);
   }
 
   openConfirmationDialog(): void {
@@ -67,9 +87,8 @@ export class UserFormComponent implements OnChanges{
     this.changePasswordDialog.open(ChangePasswordDialogComponent);
   }
 
-  onSubmit(){
-    console.log(this.editUserForm.value)
-    if(this.editUserForm.dirty)
-    this.openConfirmationDialog();
+  onSubmit() {
+    console.log(this.editUserForm.value);
+    if (this.editUserForm.dirty) this.openConfirmationDialog();
   }
 }

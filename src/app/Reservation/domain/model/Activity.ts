@@ -1,11 +1,27 @@
 export class Activity {
-  id?: string;
-  name?: string;
-  description?: string;
-  duration?: string;
-  location?: string;
-  country?: string;
-  categoryId?: string;
-  price?: string;
-  photo: string[] = [];
+  id: number;
+  continent: string;
+  country: string;
+  name: string;
+  price: number;
+  description: string;
+  photo: string[];
+
+  constructor(
+    id: number,
+    continent: string,
+    country: string,
+    name: string,
+    price: number,
+    description: string,
+    photo: string[]
+  ) {
+    this.description = description;
+    this.id = id;
+    this.continent = continent;
+    this.country = country;
+    this.name = name;
+    this.price = price;
+    this.photo = photo;
+  }
 }

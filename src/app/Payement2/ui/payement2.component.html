@@ -1,0 +1,149 @@
+<!-- LEFT BLOCK / PAYEMENT FORM -->
+<div class="payement-container">
+  <div class="info-container">
+    <div class="contact-block">
+      <h3>Contact</h3>
+      <div class="name-container">
+        <span class="input-name">
+          <input pInputText placeholder="{{ user.firstName }}" />
+        </span>
+        <span class="input-name">
+          <input pInputText placeholder="{{ user.lastName }}" />
+        </span>
+      </div>
+
+      <div class="mail-container">
+        <span class="input-mail">
+          <input pInputText placeholder="{{ user.email }}" />
+        </span>
+      </div>
+
+      <h3>Billing addres</h3>
+      <div class="adress-container">
+        <span class="input-name">
+          <input pInputText placeholder="Adress" />
+        </span>
+
+        <div class="city-container">
+          <span class="input-mail">
+            <input pInputText placeholder="City" />
+          </span>
+          <span class="input-mail">
+            <input pInputText placeholder="Zip code" />
+          </span>
+        </div>
+      </div>
+
+      <h3>Payment</h3>
+      <div class="payement-block">
+        <div>
+          <span>
+            <input pInputText placeholder="Card number" />
+          </span>
+        </div>
+
+        <div class="card-secu">
+          <span>
+            <input pInputText placeholder="Expiration date" />
+          </span>
+          <span>
+            <input pInputText placeholder="CVC" />
+          </span>
+        </div>
+
+        <div>
+          <span>
+            <input pInputText placeholder="CardHolder name" />
+          </span>
+        </div>
+      </div>
+      <div>
+        <button (click)="createReservation()" pButton>
+          Payement validation
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- RIGHT BLOCK / ACTIVITY SUMMARY -->
+  <div class="reservation-container">
+    <div class="details-reservation">
+      <div class="img-container">
+        <img src="{{ activity.photo[1] }}" alt="{{ activity.name }}" />
+      </div>
+      <div>
+        <div class="info">
+          <strong>Name</strong>
+          <span> {{ activity.name }} </span>
+        </div>
+        <p-divider></p-divider>
+        <div class="info">
+          <strong>Localisation</strong>
+          <span> {{ activity.country }} </span>
+        </div>
+        <p-divider></p-divider>
+        <div class="info">
+          <strong>Price</strong>
+          <span> {{ activity.price }} € </span>
+        </div>
+      </div>
+      <div *ngIf="reservation && reservation.length > 0">
+        <div class="details"><b>Details</b></div>
+        <form [formGroup]="reservationForm">
+          <div *ngFor="let reservation of reservation">
+            <div class="info">
+              <i class="pi pi-calendar"></i>
+              <input
+                type="date"
+                [value]="reservation.reservationDate | date : 'yyyy-MM-dd'"
+                readonly
+              />
+            </div>
+            <p-divider></p-divider>
+            <div class="info">
+              <i class="pi pi-clock"></i>
+              <input
+                type="text"
+                [value]="reservation.reservationDate | date : 'HH:mm'"
+                readonly
+              />
+            </div>
+            <p-divider></p-divider>
+            <div class="info">
+              <i class="pi pi-user"></i>
+              <input
+                type="number"
+                [value]="reservation.numberOfParticipants"
+                readonly
+              />
+            </div>
+            <p-divider></p-divider>
+            <div class="info">
+              <i class="pi pi-money-bill"></i>
+              <div>
+                <input
+                  class="price-input"
+                  type="number"
+                  [value]="reservation.reservationPrice"
+                  readonly
+                />
+                <span class="currency">€</span>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <p-dialog
+    header="Thank you for the reservation"
+    [(visible)]="modalIsVisible"
+    [modal]="true"
+    [style]="{ width: '50vw' }"
+    style="align-items: center"
+    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+  >
+    <div class="modal">
+      <img src="../../../../assets/confirmed.png" alt="validate" />
+    </div>
+  </p-dialog>
+</div>
