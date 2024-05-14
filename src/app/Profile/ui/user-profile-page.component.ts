@@ -12,6 +12,8 @@ import { UserLocalStorageHandlerService } from '../domain/services/user-local-st
 import { Activity } from '../../Reservation/domain/model/Activity';
 import { Reservation } from '../domain/models/reservation';
 import { UserDatedActivity } from '../domain/models/user-dated-activity';
+import { OnExit } from '../domain/guards/exit-profile-page.guard';
+import { ConfirmationDialogExitComponent } from './components/confirmation-dialog-exit-without-saving/confirmation-exit-dialog.component';
 
 
 @Component({
@@ -25,7 +27,7 @@ import { UserDatedActivity } from '../domain/models/user-dated-activity';
         MatDialogTitle, DeleteAccountBlockComponent]
 })
 
-export class UserProfilePageComponent implements OnInit{
+export class UserProfilePageComponent implements OnInit, OnExit{
   protected user!: User;
   protected showActivities: boolean = false;
   private allExp:UserDatedActivity[]=[];
@@ -36,9 +38,10 @@ export class UserProfilePageComponent implements OnInit{
   protected futureActivities:UserDatedActivity[] = [];
   protected allRecentActivities:UserDatedActivity[] = [];
   protected allFutureActivities:UserDatedActivity[] = [];
+  protected dirtyForm: boolean = false;
 
 
-  constructor(private userLocalStorageHandlerService:UserLocalStorageHandlerService, public userService: UserService, public deleteDialog:MatDialog ){}
+  constructor(private userLocalStorageHandlerService:UserLocalStorageHandlerService, public confirmationExitDialog: MatDialog, public userService: UserService, public deleteDialog:MatDialog ){}
 
 
   getUserActivitiesFromReservations(){
@@ -97,8 +100,28 @@ export class UserProfilePageComponent implements OnInit{
 
   activityHandler(){
     this.showActivities = !this.showActivities;
-    console.log(this.showActivities)
   }
+
+  onDirtyChanged(dirty: boolean): void {
+    this.dirtyForm = dirty;
+  }
+
+  async onExit(): Promise<boolean> {
+    if (this.dirtyForm == true) {
+      const dialogRef = this.confirmationExitDialog.open(ConfirmationDialogExitComponent);
+      return new Promise<boolean>((resolve) => {
+        dialogRef.afterClosed().subscribe(result => {
+          if (result === true) {
+            resolve(true);
+          } else {
+            resolve(false);
+          }
+        });
+      });
+    }
+    return true;
+  }
+
 
   ngOnInit(){
     this.getUser();

@@ -1,0 +1,9 @@
+<h4 mat-dialog-title>Changes will be lost. Do you want to exit without saving ?</h4>
+
+<div mat-dialog-actions *ngIf="showDefaultMessage">
+   <button mat-button style="background-color:var(--primary-bg-color)" (click)="confirmationExit()">Yes</button>
+   <button mat-button mat-dialog-close (click)="cancelExit()">No</button>
+ 
+</div>
+
+
