@@ -1,3 +1,4 @@
+import { UserLocalStorageHandlerService } from './../domain/services/user-local-storage/user-local-storage-handler.service';
 import { UserService } from './../domain/services/user-service/user.service';
 import { Component, OnInit } from '@angular/core';
 import { UserExpListComponent } from './components/user-exp-list/user-exp-list.component';
@@ -8,12 +9,11 @@ import { UserAvatarComponent } from './components/user-avatar/user-avatar.compon
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle } from '@angular/material/dialog';
 import { DeleteAccountBlockComponent } from './components/delete-account-block/delete-account-block.component';
-import { UserLocalStorageHandlerService } from '../domain/services/user-local-storage/user-local-storage-handler.service';
 import { Activity } from '../../Reservation/domain/model/Activity';
 import { Reservation } from '../domain/models/reservation';
-import { UserDatedActivity } from '../domain/models/user-dated-activity';
 import { OnExit } from '../domain/guards/exit-profile-page.guard';
 import { ConfirmationDialogExitComponent } from './components/confirmation-dialog-exit-without-saving/confirmation-exit-dialog.component';
+import { UserDatedActivity } from '../domain/models/user-dated-activity';
 
 
 @Component({
@@ -41,7 +41,7 @@ export class UserProfilePageComponent implements OnInit, OnExit{
   protected dirtyForm: boolean = false;
 
 
-  constructor(private userLocalStorageHandlerService:UserLocalStorageHandlerService, public confirmationExitDialog: MatDialog, public userService: UserService, public deleteDialog:MatDialog ){}
+  constructor(private UserLocalStorageHandlerService:UserLocalStorageHandlerService, public confirmationExitDialog: MatDialog, public userService: UserService, public deleteDialog:MatDialog ){}
 
 
   getUserActivitiesFromReservations(){
@@ -86,7 +86,7 @@ export class UserProfilePageComponent implements OnInit, OnExit{
   } 
 
   getUser(): void {
-    const userId = this.userLocalStorageHandlerService.getUserIdFromLocalStorage();
+    const userId = this.UserLocalStorageHandlerService.getUserIdFromLocalStorage();
     this.userService.getUserById(userId).subscribe(
       (data) => {
         this.user = data;
@@ -100,6 +100,7 @@ export class UserProfilePageComponent implements OnInit, OnExit{
 
   activityHandler(){
     this.showActivities = !this.showActivities;
+    console.log(this.showActivities)
   }
 
   onDirtyChanged(dirty: boolean): void {

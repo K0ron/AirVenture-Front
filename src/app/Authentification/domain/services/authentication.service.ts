@@ -1,8 +1,8 @@
+import { UserLocalStorageHandlerService } from './../../../Profile/domain/services/user-local-storage/user-local-storage-handler.service';
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {catchError, map, Observable, pipe} from "rxjs";
 import {User} from "../models/User";
-import { UserLocalStorageHandlerService } from '../../../Profile/domain/services/user-local-storage/user-local-storage-handler.service';
 import { UserIdDTO } from '../../../Profile/domain/models/userIdDTO';
 
 @Injectable({
@@ -10,7 +10,7 @@ import { UserIdDTO } from '../../../Profile/domain/models/userIdDTO';
 })
 export class AuthenticationService {
 
-  constructor(private httpClient: HttpClient, private userLocalStorageHandlerService:UserLocalStorageHandlerService) { }
+  constructor(private httpClient: HttpClient, private UserLocalStorageHandlerService:UserLocalStorageHandlerService) { }
 
   authenticate(email: string, password: string): Observable<boolean> {
     return this.httpClient.post<any>("http://localhost:8080/login", JSON.stringify({email, password}), {
@@ -24,7 +24,7 @@ export class AuthenticationService {
         if (response.status === 200) {
           localStorage.setItem('LoggedIn', 'true');
           let userFromBack:UserIdDTO = response.body;
-          this.userLocalStorageHandlerService.saveUserIdInLocalStorage("userId", userFromBack.id);
+          this.UserLocalStorageHandlerService.saveUserIdInLocalStorage("userId", userFromBack.id);
           return true;
         }
         return false;
