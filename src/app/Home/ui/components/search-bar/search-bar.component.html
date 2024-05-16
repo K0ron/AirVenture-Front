@@ -1,5 +1,14 @@
-<div class="search-container">
-    <h1 class="center-title">À la recherche de votre prochaine aventure ?</h1>
-    <span>Recherche:</span>
-    <input type="text" [(ngModel)]="enteredSearchValue" (input)="onSearchTextChange()">
+<head>
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+</head>
+
+<div class="search-bar">
+    <div class="search-container">
+        <input type="text" name="search" placeholder="Search..." class="search-input" [(ngModel)]="enteredSearchValue"
+            (input)="onSearchTextChange()">
+        <a href="#" class="search-btn">
+            <i class="fas fa-search"></i>
+        </a>
+    </div>
 </div>

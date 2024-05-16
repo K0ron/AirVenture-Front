@@ -33,13 +33,15 @@ export class AuthenticationComponent {
     });
 
     onSubmitLogin() {
+      if (this.loginForm.valid) {
         // @ts-ignore
         const loginDto = new LoginRequestDto(this.loginForm.get('email').value, this.loginForm.get('password').value);
         this.authenticationService.authenticate(loginDto.email, loginDto.password).subscribe((isLoggedIn: boolean) => {
-            if (isLoggedIn) {
-                this.router.navigate(["/home"]);
-            }
+          if (isLoggedIn) {
+            this.router.navigate(["/home"]);
+          }
         })
+      }
     }
 
     signupForm = this.formBuilder.group({

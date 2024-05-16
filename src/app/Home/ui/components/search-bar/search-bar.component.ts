@@ -26,6 +26,7 @@ export class SearchBarComponent {
   searchTextChanged: EventEmitter<string> = new EventEmitter<string>();
 
   onSearchTextChange() {
-    this.searchTextChanged.emit(this.enteredSearchValue);
+    const searchTextLowerCase = this.enteredSearchValue.toLowerCase();
+    this.searchTextChanged.emit(searchTextLowerCase);
   }
 }

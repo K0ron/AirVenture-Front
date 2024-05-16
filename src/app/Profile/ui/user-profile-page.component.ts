@@ -7,7 +7,13 @@ import { User } from '../domain/models/user-model';
 import { CommonModule } from '@angular/common';
 import { UserAvatarComponent } from './components/user-avatar/user-avatar.component';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialog, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle } from '@angular/material/dialog';
+import {
+  MatDialog,
+  MatDialogActions,
+  MatDialogClose,
+  MatDialogContent,
+  MatDialogTitle,
+} from '@angular/material/dialog';
 import { DeleteAccountBlockComponent } from './components/delete-account-block/delete-account-block.component';
 import { Activity } from '../../Reservation/domain/model/Activity';
 import { Reservation } from '../domain/models/reservation';
@@ -17,14 +23,22 @@ import { UserDatedActivity } from '../domain/models/user-dated-activity';
 
 
 @Component({
-    selector: 'app-user-profile-page',
-    standalone: true,
-    templateUrl: './user-profile-page.component.html',
-    styleUrl: './user-profile-page.component.css',
-    imports: [UserExpListComponent, UserFormComponent, CommonModule, UserAvatarComponent, MatButtonModule, MatDialogActions,
-        MatDialogClose,
-        MatDialogContent,
-        MatDialogTitle, DeleteAccountBlockComponent]
+  selector: 'app-user-profile-page',
+  standalone: true,
+  templateUrl: './user-profile-page.component.html',
+  styleUrl: './user-profile-page.component.css',
+  imports: [
+    UserExpListComponent,
+    UserFormComponent,
+    CommonModule,
+    UserAvatarComponent,
+    MatButtonModule,
+    MatDialogActions,
+    MatDialogClose,
+    MatDialogContent,
+    MatDialogTitle,
+    DeleteAccountBlockComponent,
+  ],
 })
 
 export class UserProfilePageComponent implements OnInit, OnExit{
@@ -82,6 +96,7 @@ export class UserProfilePageComponent implements OnInit, OnExit{
       this.futureActivities = this.futureActivities.slice(0,3);
     } else {
       this.noActivitiesMessage;
+
     }
   } 
 
@@ -126,6 +141,4 @@ export class UserProfilePageComponent implements OnInit, OnExit{
 
   ngOnInit(){
     this.getUser();
-  }
-
 }
