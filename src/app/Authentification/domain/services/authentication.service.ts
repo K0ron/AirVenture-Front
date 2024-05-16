@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {catchError, map, Observable, pipe} from "rxjs";
 import {User} from "../models/User";
+import { UserLocalStorageHandlerService } from '../../../Profile/domain/services/user-local-storage/user-local-storage-handler.service';
+import { UserIdDTO } from '../../../Profile/domain/models/userIdDTO';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private userLocalStorageHandlerService:UserLocalStorageHandlerService) { }
 
   authenticate(email: string, password: string): Observable<boolean> {
     return this.httpClient.post<any>("http://localhost:8080/login", JSON.stringify({email, password}), {
@@ -21,6 +23,8 @@ export class AuthenticationService {
       map(response => {
         if (response.status === 200) {
           localStorage.setItem('LoggedIn', 'true');
+          let userFromBack:UserIdDTO = response.body;
+          this.userLocalStorageHandlerService.saveUserIdInLocalStorage("userId", userFromBack.id);
           return true;
         }
         return false;
@@ -44,4 +48,9 @@ export class AuthenticationService {
       })
     )
   }
+/*   
+  logout(): void {
+    this.httpClient.post<any>('http://localhost:8080/logout', {}).subscribe();   delete cookie, marche pas
+  } */
+
 }

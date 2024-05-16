@@ -1,8 +1,6 @@
 export interface UserCard {
     
-    activity: string,
-    description: string,
-    image: string
-    
-  
-  }
+  activity: string,
+  description: string,
+  image: string
+}

@@ -1,3 +1,6 @@
+import { MatDialogRef } from '@angular/material/dialog';
+import { UserService } from './../../../domain/services/user-service/user.service';
+import { ChangePasswordDTO } from './../../../domain/models/change-password-dto';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -6,6 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { CustomValidators } from '../../../../customValidators';
+import { UserLocalStorageHandlerService } from '../../../domain/services/user-local-storage/user-local-storage-handler.service';
 
 @Component({
   selector: 'app-change-password-dialog',
@@ -16,13 +20,21 @@ import { CustomValidators } from '../../../../customValidators';
 })
 export class ChangePasswordDialogComponent {
 
+  packPassword!:ChangePasswordDTO;
+  passwordErrorMessage:string = "wrong password";
+  passwordErrorMessageHandler:boolean= false;  
+  otherErrorsMessage:string = "An unexpected error occurredm the password could no be saved";
+  otherErrorMessageHandler:boolean= false;  
+  showDefaultMessage:boolean = true;
+
   hide1 = true;
   hide2 = true;
   hide3 = true;
 
-  constructor(private fb: FormBuilder,){}
 
-passwordChangeForm = this.fb.group({
+  constructor(private fb: FormBuilder, private userService:UserService, private UserLocalStorageHandlerService:UserLocalStorageHandlerService, private dialogRef: MatDialogRef<ChangePasswordDialogComponent>){}
+
+  passwordChangeForm = this.fb.group({
 
     oldPassword: ["", [Validators.required]],
     newPassword: ["", [Validators.required]],
@@ -30,10 +42,45 @@ passwordChangeForm = this.fb.group({
   },
   {
     validators: CustomValidators.mustBeEqual('newPassword', 'repeatedPassword')
-    });
+  });
 
-  onSubmit(){
-    console.log(this.passwordChangeForm.value)
+  getPasswords():ChangePasswordDTO {
+    const oldPasswordControl = this.passwordChangeForm.get('oldPassword')?.value
+    const newPasswordControl = this.passwordChangeForm.get('newPassword')?.value
+    let PackPasswordBeforeChanges : ChangePasswordDTO = {password : "", newPassword:""}
+    if (oldPasswordControl && newPasswordControl) {
+      PackPasswordBeforeChanges.password = oldPasswordControl;
+      PackPasswordBeforeChanges.newPassword = newPasswordControl;
+    }
+    this.packPassword = PackPasswordBeforeChanges;
+    console.log(this.packPassword)
+    return this.packPassword;
   }
 
+  closeDialog() {
+    this.dialogRef.close(); 
+  }
+
+  hideWrongPasswordError() {
+    this.passwordErrorMessageHandler = false;
+  }
+
+  onSubmit() {
+    this.packPassword = this.getPasswords();
+    const id = this.UserLocalStorageHandlerService.getUserIdFromLocalStorage();
+    this.userService.changePassword(id, this.packPassword).subscribe(
+      (response) => {
+        console.log(response, "password updated");
+        this.showDefaultMessage = false;
+      },
+      (error) => {
+        console.log(error.message)
+        if (error.status === 400) {
+            this.passwordErrorMessageHandler = true;
+        } else {
+          this.otherErrorMessageHandler =true;
+        }
+      }
+    );
+  }
  }

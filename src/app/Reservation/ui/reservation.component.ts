@@ -56,10 +56,16 @@ export class ReservationComponent {
     id: 0,
     name: '',
     description: '',
-    photo: [],
+    image: '',
+    price: 0,
+    location: '',
+    continent: '',
+
+   /* photo: [],
     price: 0,
     continent: '',
-    country: '',
+    country: '',*/
+
   };
 
   // Récupération Date selectionnée
@@ -120,12 +126,17 @@ export class ReservationComponent {
       country: 'France',
       continent: 'Europe',
       description: 'Saut en parachute',
-      price: 245,
-      photo: [
+      price: 300,
+      image: 
+     /* price: 245,
+      photo: [*/
+
         '../../../assets/photo/para.jpeg',
-        '../../../assets/photo/splash-parachute.94647fe.jpg',
-        '../../../assets/photo/parachute.jpeg',
-      ],
+ /*        '../../../assets/photo/splash-parachute.94647fe.jpg',
+        '../../../assets/photo/parachute.jpeg', */
+      
+      continent: "",
+      location:"",
     };
 
     this.selectedParticipant = 1;

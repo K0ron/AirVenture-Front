@@ -1,9 +1,9 @@
+import { UserService } from './../domain/services/user-service/user.service';
 import { Component, OnInit } from '@angular/core';
 import { UserExpListComponent } from './components/user-exp-list/user-exp-list.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { User } from '../domain/models/user-model';
 import { CommonModule } from '@angular/common';
-import { UserCard } from '../domain/models/user-card';
 import { UserAvatarComponent } from './components/user-avatar/user-avatar.component';
 import { MatButtonModule } from '@angular/material/button';
 import {
@@ -14,8 +14,11 @@ import {
   MatDialogTitle,
 } from '@angular/material/dialog';
 import { DeleteAccountBlockComponent } from './components/delete-account-block/delete-account-block.component';
-import { UserService } from '../domain/services/user-service/user.service';
-import { UserExpService } from '../domain/services/user-exp-service/user-exp.service';
+import { UserLocalStorageHandlerService } from '../domain/services/user-local-storage/user-local-storage-handler.service';
+import { Activity } from '../../Reservation/domain/model/Activity';
+import { Reservation } from '../domain/models/reservation';
+import { UserDatedActivity } from '../domain/models/user-dated-activity';
+
 
 @Component({
   selector: 'app-user-profile-page',
@@ -35,46 +38,83 @@ import { UserExpService } from '../domain/services/user-exp-service/user-exp.ser
     DeleteAccountBlockComponent,
   ],
 })
-export class UserProfilePageComponent implements OnInit {
-  public user!: User;
-  userExpList: UserCard[] = [];
-  public showMore: boolean = true;
-  public buttonText: string = 'show more activities';
-  public allExp: UserCard[] = [];
 
-  constructor(
-    private serviceUser: UserService,
-    private serviceUserExp: UserExpService,
-    public deleteDialog: MatDialog
-  ) {}
+export class UserProfilePageComponent implements OnInit{
+  protected user!: User;
+  protected showActivities: boolean = false;
+  private allExp:UserDatedActivity[]=[];
+  private noActivitiesMessage: string = "No activities yet";
+  protected userReservations: Reservation[] = []; 
+  protected userActivities:Activity[] = [];
+  protected recentActivities:UserDatedActivity[] = [];
+  protected futureActivities:UserDatedActivity[] = [];
+  protected allRecentActivities:UserDatedActivity[] = [];
+  protected allFutureActivities:UserDatedActivity[] = [];
 
-  getUserFromService() {
-    this.serviceUser.getUser().subscribe((UserFromDB) => {
-      this.user = UserFromDB;
-      console.log('this.user');
-    });
-  }
 
-  getUserFromExpService() {
-    this.serviceUserExp.getUserExp().subscribe((ExpsFromDB) => {
-      this.userExpList = ExpsFromDB;
-      this.allExp = this.userExpList;
-      this.userExpList = this.userExpList.slice(-3);
-    });
-  }
+  constructor(private userLocalStorageHandlerService:UserLocalStorageHandlerService, public userService: UserService, public deleteDialog:MatDialog ){}
 
-  showMoreHandler() {
-    this.showMore = !this.showMore;
-    if (this.showMore == true) {
-      this.userExpList = this.userExpList.slice(-3);
+
+  getUserActivitiesFromReservations(){
+    this.userReservations = this.user.reservations;
+    const getDate = new Date().getTime();
+    const currentDate = new Date(getDate);
+
+    if (this.userReservations !== null && this.userReservations !== undefined) {
+      this.userReservations.forEach(reservation => {
+        this.userActivities = reservation.activities;
+        this.userActivities.forEach(element => {
+          const userDatedActivity = new UserDatedActivity(
+            element.id,
+            element.continent,
+            element.name,
+            element.image,
+            element.price,
+            element.location,
+            element.description,
+            new Date (reservation.detaReservation)
+          );
+          this.allExp.push(userDatedActivity); 
+          this.allExp = this.allExp.sort((a, b) => a.date.getTime() - b.date.getTime());
+        })
+
+        this.recentActivities = this.allExp.filter(exp => {
+          return exp.date.getTime() < currentDate.getTime();
+        });
+  
+        this.futureActivities = this.allExp.filter(exp => {
+          return exp.date.getTime() >= currentDate.getTime();
+        });
+      });
+        this.allRecentActivities=this.recentActivities;
+        this.allFutureActivities=this.futureActivities;
+
+      this.recentActivities = this.recentActivities.slice(0,3);
+      this.futureActivities = this.futureActivities.slice(0,3);
     } else {
-      this.buttonText = 'show less activities';
-      this.userExpList = this.allExp;
+      this.noActivitiesMessage;
+
     }
+  } 
+
+  getUser(): void {
+    const userId = this.userLocalStorageHandlerService.getUserIdFromLocalStorage();
+    this.userService.getUserById(userId).subscribe(
+      (data) => {
+        this.user = data;
+        this.getUserActivitiesFromReservations();
+      },
+      (error) => {
+        console.error('Something went wrong', error);
+      }
+    );
   }
 
-  ngOnInit() {
-    this.getUserFromService();
-    this.getUserFromExpService();
+  activityHandler(){
+    this.showActivities = !this.showActivities;
+    console.log(this.showActivities)
   }
+
+  ngOnInit(){
+    this.getUser();
 }

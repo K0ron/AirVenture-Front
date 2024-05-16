@@ -1,7 +1,15 @@
-.avatar-form-container {
+.main-and-exp-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.main-container {
     display: flex;
     justify-content:space-around;
     flex-direction: row;   
+    flex-wrap: wrap;
+    width: 100%;
 }
 
 .delete-account-container {
@@ -11,6 +19,14 @@
     height: 8em; 
 }
 
+.primary-color-button{
+    background-color: var(--primary-bg-color);
+    color: blue;
+}
+
+.mat-mdc-button:not(:disabled) {
+    color: rgb(255, 255, 255);
+}
 
 .avatar-component-div{
     width: 30%;
@@ -22,5 +38,21 @@
 
 .delete-account-container {
     width: 20%;
+}
+
+.expericences-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    width: 80%;
+    margin-left: 7.4em; 
+}
+
+.button-experiences {
+    max-width: 10em;
+}
+
+.reservations-container{
+    display: flex;
 }
 
