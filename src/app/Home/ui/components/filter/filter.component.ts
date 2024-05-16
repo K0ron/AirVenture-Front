@@ -13,9 +13,11 @@ export class FilterComponent implements OnInit {
   constructor() {}
   ngOnInit(): void {}
   @Input('total') all: number = 0;
-  @Input() france: number = 0;
-  @Input() outFrance: number = 0;
-  @Input() canada: number = 0;
+  @Input() Europe: number = 0;
+  @Input() Ameriquedusud: number = 0;
+  @Input() Ameriquedunord: number = 0;
+  @Input() Afrique: number = 0;
+  @Input() Asie: number = 0;
 
   selectedRadioButtonValue: string = 'All';
 

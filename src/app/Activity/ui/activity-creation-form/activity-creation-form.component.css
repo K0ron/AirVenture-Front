@@ -1,0 +1,38 @@
+.activity-form {
+  text-align: center;
+}
+
+.form-input {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.info-inputs-container {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.same-line-inputs {
+  display: flex;
+  justify-content: space-between;
+}
+
+.same-line-container {
+  width: 48%;
+}
+
+.form-button {
+  width: 60%;
+  background-color: var(--primary-bg-color)!important;
+  color: white!important;
+  margin-top: 20px;
+  padding: 22px 0;
+  font-weight: 500;
+}
+
+.formErrors {
+  margin: -35px 0px 16px;
+  color: red;
+  text-align: left;
+}
