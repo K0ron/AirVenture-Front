@@ -2,4 +2,4 @@
 <div *ngFor="let avatar of avatars; let i = index" >
     <img [src]="avatar.url" (click)="onSelectAvatar(i);selectedAvatarIndex(i)" [ngClass]="{ 'isSelected': avatarIndexSelected === i }">
 </div>
-<button mat-button (click)="onSendAndCloseAvatar()">Select</button>
+<button mat-button style="background-color:var(--primary-bg-color); color:white" (click)="onSendAndCloseAvatar()">Select</button>

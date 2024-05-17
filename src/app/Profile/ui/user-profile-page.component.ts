@@ -141,4 +141,5 @@ export class UserProfilePageComponent implements OnInit, OnExit{
 
   ngOnInit(){
     this.getUser();
+  }
 }
