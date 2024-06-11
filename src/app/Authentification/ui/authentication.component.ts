@@ -51,7 +51,7 @@ export class AuthenticationComponent {
         email: ['', [Validators.required, Validators.email]],
         password: ['', [
           Validators.required,
-          Validators.minLength(10),
+          Validators.minLength(12),
           CustomValidators.atLeastOneNumber,  
           CustomValidators.atLeastOneLowercase, 
           CustomValidators.atLeastOneUppercase,

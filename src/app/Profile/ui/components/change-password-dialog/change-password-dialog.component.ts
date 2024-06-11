@@ -39,7 +39,7 @@ export class ChangePasswordDialogComponent {
     oldPassword: ["", [Validators.required]],
     newPassword: ["", [
       Validators.required,
-      Validators.minLength(10),
+      Validators.minLength(12),
       CustomValidators.atLeastOneNumber,  
       CustomValidators.atLeastOneLowercase, 
       CustomValidators.atLeastOneUppercase,
