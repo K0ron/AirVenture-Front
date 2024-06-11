@@ -37,7 +37,14 @@ export class ChangePasswordDialogComponent {
   passwordChangeForm = this.fb.group({
 
     oldPassword: ["", [Validators.required]],
-    newPassword: ["", [Validators.required]],
+    newPassword: ["", [
+      Validators.required,
+      Validators.minLength(10),
+      CustomValidators.atLeastOneNumber,  
+      CustomValidators.atLeastOneLowercase, 
+      CustomValidators.atLeastOneUppercase,
+      CustomValidators.atLeastOneSpecialChar
+    ]],
     repeatedPassword: ["", [Validators.required]]
   },
   {

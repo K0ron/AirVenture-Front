@@ -10,6 +10,13 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
+  post<T>(endpoint: string): Observable<T> {
+    return this.http.get<T>(`${this.apiUrl}/${endpoint}`, {
+      headers: this.getAuthHeaders(),
+      withCredentials: true,
+    })
+  }
+
   get<T>(endpoint: string): Observable<T> {
     return this.http.get<T>(`${this.apiUrl}/${endpoint}`, {
       headers: this.getAuthHeaders(),

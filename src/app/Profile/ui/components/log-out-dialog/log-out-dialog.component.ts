@@ -24,19 +24,19 @@ export class LogOutDialogComponent {
   showDefaultMessage: boolean = true;
 
 
-  constructor(private cookieService: CookieService, private authenticationService:AuthenticationService) {
+  constructor(/* private cookieService: CookieService, */ private authenticationService:AuthenticationService) {
   }
 
-  borrarToken() {
-/*   const allCookies = this.cookieService.getAll()
- */  const cookieExists: boolean = this.cookieService.check('test');
+/*  deleteCookieFromNavigator() {
+   const allCookies = this.cookieService.getAll()
+  const cookieExists: boolean = this.cookieService.check('test');
 
-console.log(cookieExists);
-  }
+console.log(cookieExists); 
+  }*/
 
   clearCookieAndLocalStorage(): void {
-/*     this.authenticationService.logout(); clean cookies
- */    localStorage.clear();
+    this.authenticationService.logout();
+    localStorage.clear();
     this.showDefaultMessage = false;
   }
 
