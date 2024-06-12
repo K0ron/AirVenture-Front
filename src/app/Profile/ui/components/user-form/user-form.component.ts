@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { User } from '../../../domain/models/user-model';
 import { HttpClientModule } from '@angular/common/http';
@@ -28,21 +28,21 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   templateUrl: './user-form.component.html',
   styleUrl: './user-form.component.css',
 })
-export class UserFormComponent implements OnChanges {
+
+export class UserFormComponent implements OnChanges, OnInit{
   @Input() userFromPage: User;
+  @Output() dirtyChanged = new EventEmitter<boolean>();
+
   hide = true;
+  editUserForm = this.fb.group({
 
-  editUserForm = this.fb.group(
+    firstName: ["", [Validators.required]],
+    lastName: ["", [Validators.required]],
+    email: ["", [Validators.required]],
+    password: ["", []]},
     {
-      firstName: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
-      email: ['', [Validators.required]],
-      password: ['', []],
-      phone: ['', [Validators.required]],
-    },
-    {}
-  );
-
+    });
+    
 
   constructor(private fb: FormBuilder, public confirmationDialog: MatDialog, public changePasswordDialog: MatDialog ) {
     this.userFromPage={id: 0, firstName:"", lastName:"", email:"",password:"", reservations:[]};
@@ -84,4 +84,13 @@ export class UserFormComponent implements OnChanges {
   onSubmit(){
     if(this.editUserForm.dirty)
     this.openConfirmationDialog();
+  }
+
+  ngOnInit(): void {
+    this.editUserForm.valueChanges
+    .subscribe(dirty => {
+      this.dirtyChanged.emit(this.editUserForm.dirty)
+    });
+  }
+
 }

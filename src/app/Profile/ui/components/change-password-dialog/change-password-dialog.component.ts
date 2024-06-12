@@ -21,8 +21,8 @@ import { UserLocalStorageHandlerService } from '../../../domain/services/user-lo
 export class ChangePasswordDialogComponent {
 
   packPassword!:ChangePasswordDTO;
-  passwordErrorMessage:string = "wrong password";
-  passwordErrorMessageHandler:boolean= false;  
+  wrongPasswordErrorMessage:string = "Wrong password";
+  wrongPasswordErrorMessageHandler:boolean= false;  
   otherErrorsMessage:string = "An unexpected error occurredm the password could no be saved";
   otherErrorMessageHandler:boolean= false;  
   showDefaultMessage:boolean = true;
@@ -41,7 +41,7 @@ export class ChangePasswordDialogComponent {
     repeatedPassword: ["", [Validators.required]]
   },
   {
-    validators: CustomValidators.mustBeEqual('newPassword', 'repeatedPassword')
+    validators: [CustomValidators.mustBeEqual('newPassword', 'repeatedPassword'), CustomValidators.mustBeDifferent('oldPassword', 'newPassword')]
   });
 
   getPasswords():ChangePasswordDTO {
@@ -62,8 +62,9 @@ export class ChangePasswordDialogComponent {
   }
 
   hideWrongPasswordError() {
-    this.passwordErrorMessageHandler = false;
+    this.wrongPasswordErrorMessageHandler = false;
   }
+
 
   onSubmit() {
     this.packPassword = this.getPasswords();
@@ -76,7 +77,7 @@ export class ChangePasswordDialogComponent {
       (error) => {
         console.log(error.message)
         if (error.status === 400) {
-            this.passwordErrorMessageHandler = true;
+            this.wrongPasswordErrorMessageHandler = true;
         } else {
           this.otherErrorMessageHandler =true;
         }

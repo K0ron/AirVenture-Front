@@ -31,7 +31,7 @@ export class CustomValidators extends Validators {
     return (group: AbstractControl): ValidationErrors | null => {
       const firstControl = group.get(firstField);
       const secondControl = group.get(secondField);
-      return firstControl?.value == secondControl?.value ? null : { mustBeDifferent: true };
+      return firstControl?.value != secondControl?.value ? null : { mustBeDifferent: true };
     };
   }
 }

@@ -1,3 +1,4 @@
+import { UserLocalStorageHandlerService } from './../domain/services/user-local-storage/user-local-storage-handler.service';
 import { UserService } from './../domain/services/user-service/user.service';
 import { Component, OnInit } from '@angular/core';
 import { UserExpListComponent } from './components/user-exp-list/user-exp-list.component';
@@ -14,9 +15,10 @@ import {
   MatDialogTitle,
 } from '@angular/material/dialog';
 import { DeleteAccountBlockComponent } from './components/delete-account-block/delete-account-block.component';
-import { UserLocalStorageHandlerService } from '../domain/services/user-local-storage/user-local-storage-handler.service';
 import { Activity } from '../../Reservation/domain/model/Activity';
 import { Reservation } from '../domain/models/reservation';
+import { OnExit } from '../domain/guards/exit-profile-page.guard';
+import { ConfirmationDialogExitComponent } from './components/confirmation-dialog-exit-without-saving/confirmation-exit-dialog.component';
 import { UserDatedActivity } from '../domain/models/user-dated-activity';
 
 
@@ -39,7 +41,7 @@ import { UserDatedActivity } from '../domain/models/user-dated-activity';
   ],
 })
 
-export class UserProfilePageComponent implements OnInit{
+export class UserProfilePageComponent implements OnInit, OnExit{
   protected user!: User;
   protected showActivities: boolean = false;
   private allExp:UserDatedActivity[]=[];
@@ -50,9 +52,10 @@ export class UserProfilePageComponent implements OnInit{
   protected futureActivities:UserDatedActivity[] = [];
   protected allRecentActivities:UserDatedActivity[] = [];
   protected allFutureActivities:UserDatedActivity[] = [];
+  protected dirtyForm: boolean = false;
 
 
-  constructor(private userLocalStorageHandlerService:UserLocalStorageHandlerService, public userService: UserService, public deleteDialog:MatDialog ){}
+  constructor(private UserLocalStorageHandlerService:UserLocalStorageHandlerService, public confirmationExitDialog: MatDialog, public userService: UserService, public deleteDialog:MatDialog ){}
 
 
   getUserActivitiesFromReservations(){
@@ -98,7 +101,7 @@ export class UserProfilePageComponent implements OnInit{
   } 
 
   getUser(): void {
-    const userId = this.userLocalStorageHandlerService.getUserIdFromLocalStorage();
+    const userId = this.UserLocalStorageHandlerService.getUserIdFromLocalStorage();
     this.userService.getUserById(userId).subscribe(
       (data) => {
         this.user = data;
@@ -115,6 +118,28 @@ export class UserProfilePageComponent implements OnInit{
     console.log(this.showActivities)
   }
 
+  onDirtyChanged(dirty: boolean): void {
+    this.dirtyForm = dirty;
+  }
+
+  async onExit(): Promise<boolean> {
+    if (this.dirtyForm == true) {
+      const dialogRef = this.confirmationExitDialog.open(ConfirmationDialogExitComponent);
+      return new Promise<boolean>((resolve) => {
+        dialogRef.afterClosed().subscribe(result => {
+          if (result === true) {
+            resolve(true);
+          } else {
+            resolve(false);
+          }
+        });
+      });
+    }
+    return true;
+  }
+
+
   ngOnInit(){
     this.getUser();
+  }
 }

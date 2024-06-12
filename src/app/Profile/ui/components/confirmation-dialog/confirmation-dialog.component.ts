@@ -4,7 +4,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { UserService } from '../../../domain/services/user-service/user.service';
-import { UserLocalStorageHandlerService } from '../../../domain/services/user-local-storage/user-local-storage-handler.service';
 
 @Component({
   selector: 'app-confirmation-dialog',

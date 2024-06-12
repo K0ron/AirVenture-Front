@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { ApiService } from './../../../../Authentification/domain/services/api-service/api.service';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { ChangePasswordDTO } from '../../models/change-password-dto';
 import { User } from '../../../../Authentification/domain/models/User';
 
@@ -10,23 +10,21 @@ import { User } from '../../../../Authentification/domain/models/User';
 })
 export class UserService {
 
-  baseURL:String ='http://localhost:8080/user'
-
-  constructor(private userQueries : HttpClient) { } // providehttpclient() to be installed in app.config.ts
+  constructor(private apiService : ApiService) { }
 
   getUserById(id:number): Observable<any> {
-    return this.userQueries.get<any>(`${this.baseURL}/${id}`);
+    return this.apiService.get<User>(`user/${id}`);
   }
 
   updateUser(id:number, user:any): Observable<any> {
-    return this.userQueries.put<any>(`${this.baseURL}/${id}`, user);
+    return this.apiService.put<User>(`user/${id}`, user);
   }
 
   deleteUser(id:number):Observable<any> {
-    return this.userQueries.delete<any>(`${this.baseURL}/${id}`);
+    return this.apiService.delete<User>(`user/${id}`);
   }
   
   changePassword(id:number, passwordData:ChangePasswordDTO):Observable<any> {
-    return this.userQueries.put<any>(`http://localhost:8080/password-forgotten/${id}`, passwordData);
+    return this.apiService.put<ChangePasswordDTO>(`password-change/${id}`, passwordData);
   }
 }
