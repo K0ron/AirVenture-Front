@@ -61,6 +61,8 @@
 .formErrors {
   margin: -20px 0px 1px;
   color: red;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .loginCheck {
@@ -101,6 +103,10 @@
 
 .nameField {
   width: 95%;
+}
+
+.errorMessage {
+  font-size: smaller; 
 }
 
 @media (max-width: 768px) {

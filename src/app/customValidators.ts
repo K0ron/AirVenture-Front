@@ -26,6 +26,11 @@ export class CustomValidators extends Validators {
     return /[a-z]+/.test(control.value) ? null : { atLeastOneLowercase: true };
   }
 
+  static atLeastOneSpecialChar(control: AbstractControl): ValidationErrors | null {
+    const regex = /[!#$%^&*(),.?":|]/;
+    return regex.test(control.value) ? null : { atLeastOneSpecialChar: true };
+  }
+
   
   static mustBeDifferent(firstField: string, secondField: string): ValidatorFn {
     return (group: AbstractControl): ValidationErrors | null => {

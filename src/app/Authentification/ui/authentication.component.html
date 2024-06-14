@@ -90,6 +90,11 @@
             </mat-form-field>
             <div *ngIf="signup.submitted && signupForm.controls.password.errors" class="formErrors">
               <span *ngIf="signupForm.controls.password.errors?.['required']">Please enter your password</span>
+              <span *ngIf="signupForm.get('password')?.errors?.['minlength']" class="error-message">Password must contain at least 10 characters</span>
+              <span *ngIf="signupForm.get('password')?.errors?.['toNumber']" class="error-message">Password must contain at least one number</span><br>
+              <span *ngIf="signupForm.get('password')?.errors?.['atLeastOneLowercase']" class="error-message">Password must contain at least one lowercase letter</span><br>
+              <span *ngIf="signupForm.get('password')?.errors?.['atLeastOneUppercase']" class="error-message">Password must contain at least one uppercase letter</span><br>
+              <span *ngIf="signupForm.get('password')?.errors?.['atLeastOneSpecialChar']" class="error-message">Password must contain at least one special character (!#$%^&*(),.?":|)</span><br>
             </div>
           </div>
 

@@ -15,6 +15,7 @@ import {LoginRequestDto} from "../domain/dto/login-request.dto";
 import {SignupRequestDto} from "../domain/dto/signup-request.dto";
 import {MatDialog} from "@angular/material/dialog";
 import {RegisterErrorModalComponent} from "./components/register-error-modal/register-error-modal.component";
+import { CustomValidators } from '../../customValidators';
 
 @Component({
   selector: 'app-login',
@@ -48,7 +49,14 @@ export class AuthenticationComponent {
         firstName: ['', Validators.required],
         lastName: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
-        password: ['', Validators.required],
+        password: ['', [
+          Validators.required,
+          Validators.minLength(12),
+          CustomValidators.atLeastOneNumber,  
+          CustomValidators.atLeastOneLowercase, 
+          CustomValidators.atLeastOneUppercase,
+          CustomValidators.atLeastOneSpecialChar
+        ]],
         roles: [1, Validators.required]
     });
 
